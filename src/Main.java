@@ -7,8 +7,6 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner promptScanner = new Scanner(System.in);
-        System.out.println("hello");
-        System.out.println("hi");
         String outputfile=selectOutputFile();
         try {
             PrintWriter out = new PrintWriter(new FileOutputStream(outputfile,true));
