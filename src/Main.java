@@ -8,7 +8,7 @@ public class Main {
 
         Scanner promptScanner = new Scanner(System.in);
         System.out.println("hello");
-        System.out.println("oii");
+        System.out.println("hi");
         String outputfile=selectOutputFile();
         try {
             PrintWriter out = new PrintWriter(new FileOutputStream(outputfile,true));
@@ -49,8 +49,7 @@ public class Main {
                     String CurrentLine =in.nextLine();
                     String[] CurrentLinearray  = CurrentLine.split(",");
                     Tablearray[line]=CurrentLinearray;
-                    System.out.println(Tablearray[line]);
-                    System.out.println("hello");
+
 
                     line++;
                 }
@@ -84,8 +83,6 @@ public class Main {
             }
 
 
-            System.out.println(Tablearray[line]);
-            System.out.println("hello");
 
 
 
