@@ -1,22 +1,122 @@
-import jdk.swing.interop.SwingInterOpUtils;
 
-import java.sql.SQLOutput;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Library {
     public static void main(String[] args) {
-        System.out.println("Hi Welcome to CSV Library");
-        System.out.println("This are the list of fuction");
-        System.out.println();
-        System.out.println("1.VIEW(FILE,TABLE)");                                            //CSV TO DATAFRAME
-        System.out.println("2.NEW TABLE(FILE,CSVDATA)");                                             //DATAFRAME TO CSV
-        System.out.println("1.APPEND/EDIT TABLE(FILE,TABLE,ROW,COLUMN,DATA)");                    //ADD NEW ELEMENT TO TABLE
-        System.out.println("1.CONCATENATECOLOUMN(FILE1,TABLE1,FILE2,TABLE2,OUTPUT FILE)");    //JOIN TWO TABLE AND OUTPUT INTO NEW TABLE
-        System.out.println("1.CONCATENATEROW(FILE1,TABLE1,FILE2,TABLE2,OUTPUT FILE)");        //JOINT TWO TABLE& THROW ERROR NOT MATCHING COLUMN
-        System.out.println("1.OBTAIN(ROW/COLUMN,START,END)");                                 //get all data from corresponding row and column
-        System.out.println("1.GETCOLUMN(\"COLUMN\",int START,int END)");                      //get data in column in range
-        System.out.println("1.GETROW(\"ROW\",int START,int END)");                            //get data in row in range
-        System.out.println("1.SORT(\"COLUMN\")");
-        System.out.println();
+
+        String file ="CSVExample.csv";
+        int tablenum=1;
+        String Table= (getElement(file,tablenum)).toString();
+        System.out.println(Table);
+
 
     }
+
+
+    public static int[] GetTableDetail(String filepath,int tableNum) {
+        int tablecounter=0;
+        int linecounter=0;
+        int headerlength=0;
+
+
+        try {
+
+            Scanner in = new Scanner(new FileInputStream(filepath));
+            //  nextInt, nextDouble, nextLine
+
+
+
+            while (in.hasNextLine()&& tablecounter<=tableNum) {
+
+
+                if (in.nextLine() == "") {
+                    tablecounter++;
+                }
+                while (tablecounter >= tableNum - 1 && tablecounter <= tableNum) {
+                    linecounter++;
+                    String stringcurrent = in.nextLine();
+                    String[] current = stringcurrent.split(",");
+                    headerlength = current.length;
+
+
+                }
+            }
+            in.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File was not found");
+        }
+        int[] arravl = new int[]{linecounter,headerlength};
+        return arravl;
+
+    }
+
+
+
+
+
+
+
+
+
+    public static String[][] getElement(String filepath,int tableNum) {
+        int tablecounter=0;
+        int linecounter=GetTableDetail(filepath,tableNum)[0];
+        int headerlength =GetTableDetail(filepath,tableNum)[1];
+        String [][] element = new String [linecounter][headerlength];
+
+
+        try {
+            Scanner in = new Scanner(new FileInputStream(filepath));
+            //  nextInt, nextDouble, nextLine
+
+
+
+            while (in.hasNextLine()&& tablecounter<=tableNum) {
+
+                if (in.nextLine() == "") {
+                    tablecounter++;
+                }
+                while (tablecounter >= tableNum - 1 && tablecounter <= tableNum) {
+                    linecounter++;
+                    String stringcurrent = in.nextLine();
+                    String[] current=stringcurrent.split(",");
+                    headerlength= current.length;
+
+
+                }
+            }
+
+
+            int tablecounter2=0;
+            tablecounter=0;
+
+
+            int j=0;
+
+             //element = new String [linecounter][headerlength];
+
+            while (in.hasNextLine()&& tablecounter2<=tableNum) {
+
+                if (tablecounter >= tableNum - 1) {
+
+                    String stringcurrent = in.nextLine();
+                    String[] current=stringcurrent.split(",");
+                    for(int i=0 ;i<= current.length;) {
+                        element[j][i] =current[i];
+                        i++;
+                    }
+                    j++;
+                }
+
+            }
+            in.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File was not found");
+        }
+        return element;
+    }
+
+
 }
