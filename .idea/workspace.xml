@@ -21,10 +21,12 @@
   <component name="ChangeListManager">
     <list default="true" id="6e0e3463-9a7e-427b-bc0f-b246fa58775f" name="Default Changelist" comment="list of method (in construction)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSVExample.csv" beforeDir="false" afterPath="$PROJECT_DIR$/CSVExample.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CVS-Library/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CVS-Library/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CVS-Library/Test.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +61,7 @@
       <recent name="C:\Users\ALIFF\Desktop\UM\6WIX1002(FUNDPROG)\CVS-Library\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Library" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Library" />
       <module name="CVS-Library" />
@@ -90,8 +92,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.SimpleCSVreader" />
         <item itemvalue="Application.Library" />
       </list>
@@ -167,22 +169,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1608474403872" />
-    <state width="1493" height="148" key="GridCell.Tab.0.bottom" timestamp="1609391008818">
+    <state width="1493" height="358" key="GridCell.Tab.0.bottom" timestamp="1609400985488">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="148" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609391008818" />
-    <state width="1493" height="148" key="GridCell.Tab.0.center" timestamp="1609391008818">
+    <state width="1493" height="358" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609400985488" />
+    <state width="1493" height="358" key="GridCell.Tab.0.center" timestamp="1609400985487">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="148" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1609391008818" />
-    <state width="1493" height="148" key="GridCell.Tab.0.left" timestamp="1609391008818">
+    <state width="1493" height="358" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1609400985487" />
+    <state width="1493" height="358" key="GridCell.Tab.0.left" timestamp="1609400985487">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="148" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1609391008818" />
-    <state width="1493" height="148" key="GridCell.Tab.0.right" timestamp="1609391008818">
+    <state width="1493" height="358" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1609400985487" />
+    <state width="1493" height="358" key="GridCell.Tab.0.right" timestamp="1609400985488">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="148" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1609391008818" />
+    <state width="1493" height="358" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1609400985488" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1608994474490">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -215,6 +217,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="469" y="170" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1609385964206" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1609400306427">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1609400306427" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CVS_Library$SimpleCSVreader.ic" NAME="SimpleCSVreader Coverage Results" MODIFIED="1608858321093" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

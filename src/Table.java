@@ -19,7 +19,6 @@ public class Table {
         else{
             try {
                 PrintWriter newfile = new PrintWriter(new FileOutputStream(path));
-                newfile.println("hello");
                 newfile.println("");
                 Path = path;
             }catch (IOException e) {
@@ -288,6 +287,24 @@ public class Table {
         ViewTable();
 
     }
+
+    public static void main(String[] args) {
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
