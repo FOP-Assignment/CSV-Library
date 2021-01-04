@@ -69,10 +69,27 @@ public class Table {
     public void ViewTable() {
         tableWithLines(getData());
     }
-    //1)To Add new Table
-    public void AddTable(String[][] Input) {
-        NewTable(getPath(),Input ,getRegex());
+    //2)To Add new Table
+    public void AddTable(String[][] Input) { NewTable(getPath(),Input ,getRegex());}
+    //3)To Remove Certain column in view
+    public void RemoveColumnView(String Header){ RemoveColV(getData(),Header); }
+    //4)To Remove Certain column in object
+    public void RemoveColumnSet(String Header){ RemoveColS(getData(),Header); }
+    //5)To Remove Certain row with empty column in view
+    public void RemoveNullSet(String Header){
+        RemovenullS(getData(),Header);
+    }
+    //5)To Remove Certain row with empty column in object
+    public void RemoveNullView(String Header){
+        RemovenullV(getData(),Header);
+    }
+    //6)To Concatenate Two table
 
+
+    public String[][] Concatenate(String[][] FirstTable, String[][] SecondTable,char Type_H_or_V) {
+
+        String Concated[][]=Concat(FirstTable,SecondTable,Type_H_or_V);
+        return Concated;
     }
 
 
@@ -288,7 +305,232 @@ public class Table {
 
     }
 
-    public static void main(String[] args) {
+    //New-------------------------------------------------------------------------------------------------------------
+    public void RemoveColV(String[][] array,String Header) {
+
+        int row = array.length;
+        int col = array[0].length;
+        int colRemove=0;
+
+        String [][] newArray = new String[row][col-1]; //new Array will have one column less
+        for(int i = 0; i < row; i++) {
+            if (i==0) {
+                for (int j = 0, currColumn = 0; j < col; j++) {
+                    if (Header.equalsIgnoreCase(array[i][j])) {
+                        colRemove = j;
+                    }
+                }
+            }
+        }
+        for(int i = 0; i < row; i++)
+        {
+            for(int j = 0,currColumn=0; j < col; j++)
+            {
+                if(j != colRemove)
+                {
+                    newArray[i][currColumn++] = array[i][j];
+                }
+            }
+        }
+
+        tableWithLines(newArray);
+    }
+    //New-------------------------------------------------------------------------------------------------------------
+    public void RemoveColS(String[][] array,String Header) {
+
+        int row = array.length;
+        int col = array[0].length;
+        int colRemove=0;
+
+        String [][] newArray = new String[row][col-1]; //new Array will have one column less
+        for(int i = 0; i < row; i++) {
+            if (i==0) {
+                for (int j = 0, currColumn = 0; j < col; j++) {
+                    if (Header.equalsIgnoreCase(array[i][j])) {
+                        colRemove = j;
+                    }
+                }
+            }
+        }
+        for(int i = 0; i < row; i++)
+        {
+            for(int j = 0,currColumn=0; j < col; j++)
+            {
+                if(j != colRemove)
+                {
+                    newArray[i][currColumn++] = array[i][j];
+                }
+            }
+        }
+
+       setData(newArray);
+        ViewTable();
+    }
+
+    //New-------------------------------------------------------------------------------------------------------------
+    public void RemovenullS (String[][] array, String Header) {
+
+        int row = array.length;
+        int temp = row;
+        int col = array[0].length;
+        int colRemove = 0;
+        int rowNew = temp;
+        int DelRow = 0;
+
+
+        for (int i = 0; i < row; i++) {
+            if (i == 0) {
+                for (int j = 0, currColumn = 0; j < col; j++) {
+                    if (Header.equalsIgnoreCase(array[i][j])) {
+                        colRemove = j;
+                    }
+                }
+            }
+            for (int j = 0; j < col; j++) {
+                if (j == colRemove && array[i][j].isEmpty()) {
+                    rowNew -= 1;
+                    DelRow += 1;
+                }
+            }
+        }
+        int[] Deleterow = new int[DelRow];
+        if(DelRow>0) {
+
+            int k = 0;
+            for (int i = 0; i < row; i++) {
+                for (int j = 0, currColumn = 0; j < col; j++) {
+                    if (j == colRemove && array[i][j].isEmpty()) {
+                        Deleterow[k++] = i;
+
+                    }
+
+                }
+
+            }
+        }
+        System.out.println(rowNew);
+
+        int currrow=0;
+        String[][] newArray = new String[rowNew][col];
+        for (int i = 0; i < row; i++) {
+            boolean Est = true;
+            for (int l = 0; l < Deleterow.length; l++) {
+                if (Deleterow[l] == i) {
+                    Est = false;
+                }
+            }
+            if (Est) {
+                for (int j = 0,currcolumn=0; j < col; j++) {
+                    newArray[currrow][currcolumn++] = array[i][j];
+                }
+                currrow++;
+            }
+        }
+        setData(newArray);
+        ViewTable();
+    }
+//----------------------------------------------------------------------------------------------------------------------------------
+public void RemovenullV (String[][] array, String Header) {
+
+    int row = array.length;
+    int temp = row;
+    int col = array[0].length;
+    int colRemove = 0;
+    int rowNew = temp;
+    int DelRow = 0;
+
+
+    for (int i = 0; i < row; i++) {
+        if (i == 0) {
+            for (int j = 0, currColumn = 0; j < col; j++) {
+                if (Header.equalsIgnoreCase(array[i][j])) {
+                    colRemove = j;
+                }
+            }
+        }
+        for (int j = 0; j < col; j++) {
+            if (j == colRemove && array[i][j].isEmpty()) {
+                rowNew -= 1;
+                DelRow += 1;
+            }
+        }
+    }
+    int[] Deleterow = new int[DelRow];
+    if(DelRow>0) {
+
+        int k = 0;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0, currColumn = 0; j < col; j++) {
+                if (j == colRemove && array[i][j].isEmpty()) {
+                    Deleterow[k++] = i;
+
+                }
+
+            }
+
+        }
+    }
+    System.out.println(rowNew);
+
+    int currrow=0;
+    String[][] newArray = new String[rowNew][col];
+    for (int i = 0; i < row; i++) {
+        boolean Est = true;
+        for (int l = 0; l < Deleterow.length; l++) {
+            if (Deleterow[l] == i) {
+                Est = false;
+            }
+        }
+        if (Est) {
+            for (int j = 0,currcolumn=0; j < col; j++) {
+                newArray[currrow][currcolumn++] = array[i][j];
+            }
+            currrow++;
+        }
+    }
+    tableWithLines(newArray);
+}
+
+
+//Concatenate method-----------------------------------------------------------------------------------------------------------------------------------
+public static String[][] Concat(String[][] FirstArray,String[][] SecondArray,char Type_H_or_V) {
+    byte Type;
+    if(Type_H_or_V=='H' || Type_H_or_V=='h' ){
+        Type=1;
+    }
+    else{
+        Type=0;
+    }
+
+    String [][] data = Two_d_OtoS(arrayConcat(FirstArray,SecondArray,Type));
+    return data;
+
+}
+
+    public static Object[][] Two_d_StoO(String[][] Data) {
+        Object[][] OData = new Object[Data.length][Data[0].length];
+        for (int row = 0; row < Data.length; row++) {
+            for (int col = 0; col < Data[row].length; col++) {
+                OData[row][col]=Data[row][col].toString();
+
+            }
+        }
+        return OData;
+    }
+
+
+
+
+    public static String[][] Two_d_OtoS(Object[][] Data) {
+        String[][] SData = new String[Data.length][Data[0].length];
+        for (int row = 0; row < Data.length; row++) {
+            for (int col = 0; col < Data[row].length; col++) {
+                SData[row][col]=Data[row][col].toString();
+
+            }
+        }
+        return SData;
+
 
     }
 
@@ -297,19 +539,56 @@ public class Table {
 
 
 
+    public static final byte ARRAY_CONCAT_HORIZ = 0, ARRAY_CONCAT_VERT = 1;
+    public static Object[][] arrayConcat (String[][] SDataA, String[][] SDataB,byte concatDirection)
+    {
+
+        Object[][]a = Two_d_StoO(SDataA);
+        Object[][]b = Two_d_StoO(SDataB);
 
 
+        if (concatDirection == ARRAY_CONCAT_HORIZ && a[0].length == b[0].length) {
+            return Arrays.stream(arrayConcat(a, b)).map(Object[].class::cast)
+                    .toArray(Object[][]::new);
+        } else if (concatDirection == ARRAY_CONCAT_VERT && a.length == b.length) {
+            Object[][] arr = new Object[a.length][a[0].length + b[0].length];
+            for (int i = 0; i < a.length; i++) {
+                arr[i] = arrayConcat(a[i], b[i]);
+            }
 
-
-
-
-
-
-
-
-
-
+            return arr;
+        } else
+            throw new RuntimeException("Attempted to concatenate arrays of incompatible sizes.");
     }
+
+    /*
+     * Concatenates 2 1D arrays
+     */
+    public static Object[] arrayConcat (Object[]a, Object[]b)
+    {
+        Object[] arr = new Object[a.length + b.length];
+        System.arraycopy(a, 0, arr, 0, a.length);
+        System.arraycopy(b, 0, arr, a.length, b.length);
+        return arr;
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

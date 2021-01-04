@@ -6,9 +6,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Table b = new Table("truck.csv",1,",");
-        String[][] bdata ={{"saya","kamu","dia"},{"1","2","3"},{"a","b","c"}};
-        b.AddTable(bdata);
+        Table a =new Table("CSVExample.csv",2,",");
+        Table b =new Table("CSVExample.csv",3,",");
+        Table c =new Table("CSVExample.csv",1,",");
+        c.AddTable(c.Concatenate(a.getData(),b.getData(),'H'));
+
+
 
 
 
