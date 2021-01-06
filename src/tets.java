@@ -1,114 +1,137 @@
-import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.Arrays;
-
+import java.util.List;
 
 public class tets{
-    public static void main(String[] args) {
-        String[][] c = {{"Sam", "Carl", "Smith"}, {"stra", "Robert", "Smith"}, {"james", "tapok", "Smith"}, {"kate", "Robert", "Smith"}};
-        String[][] d = {{"Sam", "Carl", "Smith"}, { "aya", "Robert", "Smith"}, {"james", "cindy","Smith"}, {"kate", "Robert", "Smith",}};
-        String [][] data = Concatenate(c,d,'k');
 
-        for (int row = 0; row < data.length; row++) {
-            for (int col = 0; col < data[row].length; col++) {
-                System.out.printf("%10s", data[row][col]);
+    public static void main(String[] args) {
+        String[][] names = {{"Sam", "Carl", "joe"}, {"stra", "Robert", "Smith"}, {"james", null, "Smith"},{"kate", "Robert", "Smith"}};
+
+        String[][] sull= names;
+        System.out.println(Arrays.deepToString(sull));
+
+        for (int row = 0; row < names.length; row++) {
+            for (int col = 0; col < names[row].length; col++) {
+                System.out.printf("%10s", names[row][col]);
+
+            }
+            System.out.println();
+        }
+        System.out.println();
+        System.out.println();
+
+        for (int row = 0; row < sull.length; row++) {
+            for (int col = 0; col < sull[row].length; col++) {
+                System.out.printf("%10s", sull[row][col]);
 
             }
             System.out.println();
         }
 
-
-
-       /* //convert from object array to string array, maybe?
-        String[][] namesStrings = new String[names.length][names[0].length];
-
-
-        System.out.println(Arrays.toString(namesStrings));
-        */
-
-
-
-
-
     }
 
-    public static String[][] Concatenate(String[][] FirstArray,String[][] SecondArray,char Type_H_or_V) {
-        byte Type;
-        if(Type_H_or_V=='H' || Type_H_or_V=='h' ){
-            Type=1;
+
+   /* public static String[][] removeDuplicate(String[][] matrix) {
+        String[][] newMatrix = new String[matrix.length][matrix[0].length];
+        int newMatrixRow = 1;
+
+        for (int i = 0; i < matrix[0].length; i++)
+            newMatrix[0][i] = matrix[0][i];
+
+        for (int j = 1; j < matrix.length; j++) {
+            List<Boolean> list = new ArrayList<>();
+            for (int i = 0; newMatrix[i][0] != null; i++) {
+                boolean same = true;
+                for (int col = 2; col < matrix[j].length; col++) {
+                    if (!newMatrix[i][col].equals(matrix[j][col])) {
+                        same = false;
+                        break;
+                    }
+                }
+                list.add(same);
+                System.out.println(list);
+            }
+
+            if (!list.contains(true)) {
+                for (int i = 0; i < matrix[j].length; i++) {
+                    newMatrix[newMatrixRow][i] = matrix[j][i];
+                }
+                newMatrixRow++;
+            }
         }
-        else{
-            Type=0;
+
+        int i;
+        for(i = 0; newMatrix[i][0] != null; i++);
+
+        String finalMatrix[][] = new String[i][newMatrix[0].length];
+        for (i = 0; i < finalMatrix.length; i++) {
+            for (int j = 0; j < finalMatrix[i].length; j++)
+                finalMatrix[i][j] = newMatrix[i][j];
         }
 
-        String [][] data = Two_d_OtoS(arrayConcat(FirstArray,SecondArray,Type));
-        return data;
+        return finalMatrix;
+    }*/
 
-    }
+    public static String[][] RemoveDuplicate (String[][] array, String Header) {
 
-    public static Object[][] Two_d_StoO(String[][] Data) {
-        Object[][] OData = new Object[Data.length][Data[0].length];
-        for (int row = 0; row < Data.length; row++) {
-            for (int col = 0; col < Data[row].length; col++) {
-                OData[row][col]=Data[row][col].toString();
+        int row = array.length;
+        int temp = row;
+        int col = array[0].length;
+        int colRemove = 0;
+        int rowNew = temp;
+        int DelRow = 0;
+        String[] CompareSet=new String[row];
+
+
+        for (int i = 0; i < row; i++) {
+            if (i == 0) {
+                for (int j = 0, currColumn = 0; j < col; j++) {
+                    if (Header.equalsIgnoreCase(array[i][j])) {
+                        colRemove = j;
+                    }
+                }
+            }
+            for (int j = 0; j < col; j++) {
+                if(j==colRemove){
+
+
+                }
+            }
+        }
+        int[] Deleterow = new int[DelRow];
+        if(DelRow>0) {
+
+            int k = 0;
+            for (int i = 0; i < row; i++) {
+                for (int j = 0, currColumn = 0; j < col; j++) {
+                    if (j == colRemove && array[i][j].isEmpty()) {
+                        Deleterow[k++] = i;
+
+                    }
+
+                }
 
             }
         }
-        return OData;
-    }
+        System.out.println(rowNew);
 
-
-
-
-    public static String[][] Two_d_OtoS(Object[][] Data) {
-        String[][] SData = new String[Data.length][Data[0].length];
-        for (int row = 0; row < Data.length; row++) {
-            for (int col = 0; col < Data[row].length; col++) {
-                SData[row][col]=Data[row][col].toString();
-
+        int currrow=0;
+        String[][] newArray = new String[rowNew][col];
+        for (int i = 0; i < row; i++) {
+            boolean Est = true;
+            for (int l = 0; l < Deleterow.length; l++) {
+                if (Deleterow[l] == i) {
+                    Est = false;
+                }
+            }
+            if (Est) {
+                for (int j = 0,currcolumn=0; j < col; j++) {
+                    newArray[currrow][currcolumn++] = array[i][j];
+                }
+                currrow++;
             }
         }
-        return SData;
-
-
+        return newArray;
     }
-
-
-
-
-
-
-    public static final byte ARRAY_CONCAT_HORIZ = 0, ARRAY_CONCAT_VERT = 1;
-    public static Object[][] arrayConcat (String[][] SDataA, String[][] SDataB,byte concatDirection)
-    {
-
-        Object[][]a = Two_d_StoO(SDataA);
-        Object[][]b = Two_d_StoO(SDataB);
-
-
-        if (concatDirection == ARRAY_CONCAT_HORIZ && a[0].length == b[0].length) {
-            return Arrays.stream(arrayConcat(a, b)).map(Object[].class::cast)
-                    .toArray(Object[][]::new);
-        } else if (concatDirection == ARRAY_CONCAT_VERT && a.length == b.length) {
-            Object[][] arr = new Object[a.length][a[0].length + b[0].length];
-            for (int i = 0; i < a.length; i++) {
-                arr[i] = arrayConcat(a[i], b[i]);
-            }
-
-            return arr;
-        } else
-            throw new RuntimeException("Attempted to concatenate arrays of incompatible sizes.");
-    }
-
-    /*
-     * Concatenates 2 1D arrays
-     */
-    public static Object[] arrayConcat (Object[]a, Object[]b)
-    {
-        Object[] arr = new Object[a.length + b.length];
-        System.arraycopy(a, 0, arr, 0, a.length);
-        System.arraycopy(b, 0, arr, a.length, b.length);
-        return arr;
-    }
-
 
 }
