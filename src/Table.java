@@ -101,16 +101,20 @@ public class Table {
         String Concated[][] = Concat(FirstTable, SecondTable, Type_H_or_V);
         return Concated;
     }
-
-    public  void RangeColumnView(String HeaderRange[]){
-        RangeColView(getData(),HeaderRange);
+    //7)To select certain column of the table
+    public  void SelectColumnView(String HeaderRange[]){
+        SelectColumn(getData(),HeaderRange);
     }
-
+    //7)To select range of row from the table
+    public  void RangeOfRowView(int Min,int Max){
+        RangeRow(getData(),Min,Max);
+    }
 
     //
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public String[][] GetArray(String file, int TableNum, String regex) {
+
+public String[][] GetArray(String file, int TableNum, String regex) {
         int i = 0;
         int tablenum = TableNum;
         //for new table
@@ -568,7 +572,7 @@ public class Table {
 
 //GetColumn--------------------------------------------------------------------------------------------------------------------------
 
-    public void RangeColView(String[][] array, String[] Header) {
+    public void SelectColumn(String[][] array, String[] Header) {
         int row = array.length;
         int col = array[0].length;
         int RemoveNum = 0;
@@ -622,7 +626,31 @@ public class Table {
         tableWithLines(newArray);
     }
 
+//RangeRow----------------------------------------------------------------------------------------------------------------------------------------
+public void RangeRow(String[][] array,int Min,int Max ) {
 
+    int row = array.length;
+    int temp = row;
+    int col = array[0].length;
+    String[][] newArray= new String[Max-Min+1][col];
+    int currRow=1;
+    for (int i = 0; i < row; i++) {
+        if (i == 0) {
+            for (int j = 0; j < col; j++) {
+                newArray[0][j]=array[i][j];
+            }
+        }
+        if (i>=Min && i<Max) {
+            for (int j = 0; j < col; j++) {
+                newArray[currRow][j]=array[i][j];
+                }
+            currRow++;
+            }
+        }
+    tableWithLines (newArray);
+
+
+}
 
 
 
