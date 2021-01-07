@@ -101,20 +101,29 @@ public class Table {
         String Concated[][] = Concat(FirstTable, SecondTable, Type_H_or_V);
         return Concated;
     }
+
     //7)To select certain column of the table
-    public  void SelectColumnView(String HeaderRange[]){
-        SelectColumn(getData(),HeaderRange);
-    }
-    //7)To select range of row from the table
-    public  void RangeOfRowView(int Min,int Max){
-        RangeRow(getData(),Min,Max);
+    public void SelectColumnView(String HeaderRange[]) {
+        SelectColumn(getData(), HeaderRange);
     }
 
-    //
+    //7)To select range of row from the table
+    public void RangeOfRowView(int Min, int Max) {
+        RangeRow(getData(), Min, Max);
+    }
+    //7)To select range of row from the table
+    public void RemoveDuplicateView(String Header) {
+       RemoveDupView(getData(),Header);
+    }
+    //7)To select range of row from the table
+    public void RemoveDuplicateSet(String Header) {
+        RemoveDupSet(getData(),Header);
+    }
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-public String[][] GetArray(String file, int TableNum, String regex) {
+    public String[][] GetArray(String file, int TableNum, String regex) {
         int i = 0;
         int tablenum = TableNum;
         //for new table
@@ -434,7 +443,7 @@ public String[][] GetArray(String file, int TableNum, String regex) {
         ViewTable();
     }
 
-    //----------------------------------------------------------------------------------------------------------------------------------
+    //RemoveNull View----------------------------------------------------------------------------------------------------------------------------------
     public void RemovenullV(String[][] array, String Header) {
 
         int row = array.length;
@@ -626,30 +635,150 @@ public String[][] GetArray(String file, int TableNum, String regex) {
         tableWithLines(newArray);
     }
 
-//RangeRow----------------------------------------------------------------------------------------------------------------------------------------
-public void RangeRow(String[][] array,int Min,int Max ) {
+    //RangeRow----------------------------------------------------------------------------------------------------------------------------------------
+    public void RangeRow(String[][] array, int Min, int Max) {
 
-    int row = array.length;
-    int temp = row;
-    int col = array[0].length;
-    String[][] newArray= new String[Max-Min+1][col];
-    int currRow=1;
-    for (int i = 0; i < row; i++) {
-        if (i == 0) {
-            for (int j = 0; j < col; j++) {
-                newArray[0][j]=array[i][j];
-            }
-        }
-        if (i>=Min && i<Max) {
-            for (int j = 0; j < col; j++) {
-                newArray[currRow][j]=array[i][j];
+        int row = array.length;
+        int temp = row;
+        int col = array[0].length;
+        String[][] newArray = new String[Max - Min + 1][col];
+        int currRow = 1;
+        for (int i = 0; i < row; i++) {
+            if (i == 0) {
+                for (int j = 0; j < col; j++) {
+                    newArray[0][j] = array[i][j];
                 }
-            currRow++;
+            }
+            if (i >= Min && i < Max) {
+                for (int j = 0; j < col; j++) {
+                    newArray[currRow][j] = array[i][j];
+                }
+                currRow++;
             }
         }
-    tableWithLines (newArray);
+        tableWithLines(newArray);
+    }
 
+    //RemoveDuplicateSet-------------------------------------------------------------------------------------------------------------------------
+    public void RemoveDupSet(String[][] array, String Header) {
+        int row = array.length;
+        int col = array[0].length;
+        int colHeader = 0;
+        int Duplicatecnt = 0;
+        String[] CompareSet = new String[row];
+        for (int i = 0; i < row; i++) {
+            if (i == 0) {
+                for (int j = 0, currColumn = 0; j < col; j++) {
+                    if (Header.equalsIgnoreCase(array[i][j])) {
+                        colHeader = j;
+                    }
+                }
+            }
+            for (int j = 0; j < col; j++) {
+                if (j == colHeader) {
+                    CompareSet[i] = array[i][j];
+                }
+            }
+        }
+        for (int i = 0; i < CompareSet.length; i++) {
+            for (int j = 0; j < CompareSet.length; j++) {
+                if (CompareSet[i].equals(CompareSet[j]) && i != j) {
+                    Duplicatecnt++;
+                }
+            }
+        }
+        Duplicatecnt /= 2;
+        int[] OrRow = new int[CompareSet.length - Duplicatecnt];
+        String[] CompareSet2 = new String[CompareSet.length - Duplicatecnt];
+        int currRow = 0;
+        for (int i = 0; i < CompareSet.length; i++) {
+            boolean Exist = false;
+            for (int j = 0; j < CompareSet2.length; j++) {
+                if (CompareSet[i].equalsIgnoreCase(CompareSet2[j])) {
+                    Exist = true;
+                }
+            }
+            if (Exist == false) {
+                OrRow[currRow] = i;
+                CompareSet2[currRow] = CompareSet[i];
+                currRow++;
+            }
+        }
+        String[][] newArray = new String[OrRow.length][col];
+        int newRow = 0;
+        for (int i = 0; i < array.length; i++) {
+            for (int k = 0; k < OrRow.length; k++) {
+                if (i == OrRow[k]) {
+                    for (int j = 0; j < col; j++) {
+                        newArray[newRow][j] = array[i][j];
+                    }
+                    newRow++;
+                }
+            }
+        }
+        tableWithLines(newArray);
+        setData(newArray);
+    }
 
+    //RemoveDuplicateView-------------------------------------------------------------------------------------------------------------------------
+    public void RemoveDupView(String[][] array, String Header) {
+        int row = array.length;
+        int col = array[0].length;
+        int colHeader = 0;
+        int Duplicatecnt = 0;
+        String[] CompareSet = new String[row];
+        for (int i = 0; i < row; i++) {
+            if (i == 0) {
+                for (int j = 0, currColumn = 0; j < col; j++) {
+                    if (Header.equalsIgnoreCase(array[i][j])) {
+                        colHeader = j;
+                    }
+                }
+            }
+            for (int j = 0; j < col; j++) {
+                if (j == colHeader) {
+                    CompareSet[i] = array[i][j];
+                }
+            }
+        }
+        for (int i = 0; i < CompareSet.length; i++) {
+            for (int j = 0; j < CompareSet.length; j++) {
+                if (CompareSet[i].equals(CompareSet[j]) && i != j) {
+                    Duplicatecnt++;
+                }
+            }
+        }
+        Duplicatecnt /= 2;
+        int[] OrRow = new int[CompareSet.length - Duplicatecnt];
+        String[] CompareSet2 = new String[CompareSet.length - Duplicatecnt];
+        int currRow = 0;
+        for (int i = 0; i < CompareSet.length; i++) {
+            boolean Exist = false;
+            for (int j = 0; j < CompareSet2.length; j++) {
+                if (CompareSet[i].equalsIgnoreCase(CompareSet2[j])) {
+                    Exist = true;
+                }
+            }
+            if (Exist == false) {
+                OrRow[currRow] = i;
+                CompareSet2[currRow] = CompareSet[i];
+                currRow++;
+            }
+        }
+        String[][] newArray = new String[OrRow.length][col];
+        int newRow = 0;
+        for (int i = 0; i < array.length; i++) {
+            for (int k = 0; k < OrRow.length; k++) {
+                if (i == OrRow[k]) {
+                    for (int j = 0; j < col; j++) {
+                        newArray[newRow][j] = array[i][j];
+                    }
+                    newRow++;
+                }
+            }
+        }
+        tableWithLines(newArray);
+    }
 }
 
 
@@ -696,7 +825,38 @@ public void RangeRow(String[][] array,int Min,int Max ) {
 
 
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -2,7 +2,7 @@ public class Test2 {
     public static void main(String[] args) {
         String[][] names = {{"Sam", "Carl", "Smith"}, {"stra", "Robert", "Smith"}, {"james", null, "Smith"},{"kate", "Robert", "Smith"}};
 
-        String[][] board = Removenull(names, "Carl");
+        String[][] board = RangeRow(names, 3,1);
         //System.out.println(names[1][1] == null);
 
 
@@ -27,65 +27,29 @@ public class Test2 {
 
     }
 
-    public static String[][] Removenull(String[][] array, String Header) {
+    public static String[][] RangeRow(String[][] array,int Max,int Min ) {
 
         int row = array.length;
         int temp = row;
         int col = array[0].length;
-        int colRemove = 0;
-        int rowNew = temp;
-        int DelRow = 0;
-
-
+        String[][] newArray= new String[Max-Min+1][col];
+        int currRow=1;
         for (int i = 0; i < row; i++) {
             if (i == 0) {
-                for (int j = 0, currColumn = 0; j < col; j++) {
-                    if (Header.equalsIgnoreCase(array[i][j])) {
-                        colRemove = j;
-                    }
+                for (int j = 0; j < col; j++) {
+                    newArray[0][j]=array[i][j];
                 }
             }
-            for (int j = 0; j < col; j++) {
-                if (j == colRemove && array[i][j] == null) {
-                    rowNew -= 1;
-                    DelRow += 1;
-                }
-            }
-        }
-        int[] Deleterow = new int[DelRow];
-        if(DelRow>0) {
-
-            int k = 0;
-            for (int i = 0; i < row; i++) {
-                for (int j = 0, currColumn = 0; j < col; j++) {
-                    if (j == colRemove && array[i][j] == null) {
-                        Deleterow[k++] = i;
-
+            if (i>=Min && i<Max) {
+                for (int j = 0; j < col; j++) {
+                    newArray[currRow][j]=array[i][j];
                     }
-
-                }
-
-            }
-        }
-            System.out.println(rowNew);
-
-        int currrow=0;
-        String[][] newArray = new String[rowNew][col];
-            for (int i = 0; i < row; i++) {
-                boolean Est = true;
-                for (int l = 0; l < Deleterow.length; l++) {
-                    if (Deleterow[l] == i) {
-                        Est = false;
-                    }
-                }
-                if (Est) {
-                    for (int j = 0,currcolumn=0; j < col; j++) {
-                        newArray[currrow][currcolumn++] = array[i][j];
-                    }
-                    currrow++;
+                currRow++;
                 }
             }
         return newArray;
+
+
     }
 }
 

@@ -1,0 +1,411 @@
+Index: src/tets.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.ArrayList;\r\nimport java.util.Arrays;\r\nimport java.util.List;\r\n\r\npublic class tets{\r\n\r\n    public static void main(String[] args) {\r\n        String[][] names = {{\"Sam\", \"Carl\", \"joe\"}, {\"stra\", \"Robert\", \"Smith\"}, {\"james\", null, \"Smith\"},{\"kate\", \"Robert\", \"Smith\"}};\r\n\r\n        String[][] sull= names;\r\n        System.out.println(Arrays.deepToString(sull));\r\n\r\n        for (int row = 0; row < names.length; row++) {\r\n            for (int col = 0; col < names[row].length; col++) {\r\n                System.out.printf(\"%10s\", names[row][col]);\r\n\r\n            }\r\n            System.out.println();\r\n        }\r\n        System.out.println();\r\n        System.out.println();\r\n\r\n        for (int row = 0; row < sull.length; row++) {\r\n            for (int col = 0; col < sull[row].length; col++) {\r\n                System.out.printf(\"%10s\", sull[row][col]);\r\n\r\n            }\r\n            System.out.println();\r\n        }\r\n\r\n    }\r\n\r\n\r\n   /* public static String[][] removeDuplicate(String[][] matrix) {\r\n        String[][] newMatrix = new String[matrix.length][matrix[0].length];\r\n        int newMatrixRow = 1;\r\n\r\n        for (int i = 0; i < matrix[0].length; i++)\r\n            newMatrix[0][i] = matrix[0][i];\r\n\r\n        for (int j = 1; j < matrix.length; j++) {\r\n            List<Boolean> list = new ArrayList<>();\r\n            for (int i = 0; newMatrix[i][0] != null; i++) {\r\n                boolean same = true;\r\n                for (int col = 2; col < matrix[j].length; col++) {\r\n                    if (!newMatrix[i][col].equals(matrix[j][col])) {\r\n                        same = false;\r\n                        break;\r\n                    }\r\n                }\r\n                list.add(same);\r\n                System.out.println(list);\r\n            }\r\n\r\n            if (!list.contains(true)) {\r\n                for (int i = 0; i < matrix[j].length; i++) {\r\n                    newMatrix[newMatrixRow][i] = matrix[j][i];\r\n                }\r\n                newMatrixRow++;\r\n            }\r\n        }\r\n\r\n        int i;\r\n        for(i = 0; newMatrix[i][0] != null; i++);\r\n\r\n        String finalMatrix[][] = new String[i][newMatrix[0].length];\r\n        for (i = 0; i < finalMatrix.length; i++) {\r\n            for (int j = 0; j < finalMatrix[i].length; j++)\r\n                finalMatrix[i][j] = newMatrix[i][j];\r\n        }\r\n\r\n        return finalMatrix;\r\n    }*/\r\n\r\n    public static String[][] RemoveDuplicate (String[][] array, String Header) {\r\n\r\n        int row = array.length;\r\n        int temp = row;\r\n        int col = array[0].length;\r\n        int colRemove = 0;\r\n        int rowNew = temp;\r\n        int DelRow = 0;\r\n        String[] CompareSet=new String[row];\r\n\r\n\r\n        for (int i = 0; i < row; i++) {\r\n            if (i == 0) {\r\n                for (int j = 0, currColumn = 0; j < col; j++) {\r\n                    if (Header.equalsIgnoreCase(array[i][j])) {\r\n                        colRemove = j;\r\n                    }\r\n                }\r\n            }\r\n            for (int j = 0; j < col; j++) {\r\n                if(j==colRemove){\r\n\r\n\r\n                }\r\n            }\r\n        }\r\n        int[] Deleterow = new int[DelRow];\r\n        if(DelRow>0) {\r\n\r\n            int k = 0;\r\n            for (int i = 0; i < row; i++) {\r\n                for (int j = 0, currColumn = 0; j < col; j++) {\r\n                    if (j == colRemove && array[i][j].isEmpty()) {\r\n                        Deleterow[k++] = i;\r\n\r\n                    }\r\n\r\n                }\r\n\r\n            }\r\n        }\r\n        System.out.println(rowNew);\r\n\r\n        int currrow=0;\r\n        String[][] newArray = new String[rowNew][col];\r\n        for (int i = 0; i < row; i++) {\r\n            boolean Est = true;\r\n            for (int l = 0; l < Deleterow.length; l++) {\r\n                if (Deleterow[l] == i) {\r\n                    Est = false;\r\n                }\r\n            }\r\n            if (Est) {\r\n                for (int j = 0,currcolumn=0; j < col; j++) {\r\n                    newArray[currrow][currcolumn++] = array[i][j];\r\n                }\r\n                currrow++;\r\n            }\r\n        }\r\n        return newArray;\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/tets.java	(revision e359635f8d374a2d3b973a1bfca3891f20659818)
++++ src/tets.java	(date 1610017573961)
+@@ -1,137 +1,81 @@
+-import java.util.ArrayList;
+-import java.util.Arrays;
+-import java.util.List;
+ 
+ public class tets{
+ 
+     public static void main(String[] args) {
+-        String[][] names = {{"Sam", "Carl", "joe"}, {"stra", "Robert", "Smith"}, {"james", null, "Smith"},{"kate", "Robert", "Smith"}};
+-
+-        String[][] sull= names;
+-        System.out.println(Arrays.deepToString(sull));
++        String[][] names = {{"Sam", "Carl", "joe"}, {"stra", "Robert", "Smith"}, {"stra","james", "Carl", "Smith"},{"kate", "Robert", "Smith"}};
++        String[][] sull= RemoveDuplicate(names,"joe");
+ 
+         for (int row = 0; row < names.length; row++) {
+             for (int col = 0; col < names[row].length; col++) {
+                 System.out.printf("%10s", names[row][col]);
+-
+             }
+             System.out.println();
+         }
+         System.out.println();
+         System.out.println();
+-
+         for (int row = 0; row < sull.length; row++) {
+             for (int col = 0; col < sull[row].length; col++) {
+                 System.out.printf("%10s", sull[row][col]);
+-
+             }
+             System.out.println();
+         }
+-
+     }
+-
+-
+-   /* public static String[][] removeDuplicate(String[][] matrix) {
+-        String[][] newMatrix = new String[matrix.length][matrix[0].length];
+-        int newMatrixRow = 1;
+-
+-        for (int i = 0; i < matrix[0].length; i++)
+-            newMatrix[0][i] = matrix[0][i];
+-
+-        for (int j = 1; j < matrix.length; j++) {
+-            List<Boolean> list = new ArrayList<>();
+-            for (int i = 0; newMatrix[i][0] != null; i++) {
+-                boolean same = true;
+-                for (int col = 2; col < matrix[j].length; col++) {
+-                    if (!newMatrix[i][col].equals(matrix[j][col])) {
+-                        same = false;
+-                        break;
+-                    }
+-                }
+-                list.add(same);
+-                System.out.println(list);
+-            }
+-
+-            if (!list.contains(true)) {
+-                for (int i = 0; i < matrix[j].length; i++) {
+-                    newMatrix[newMatrixRow][i] = matrix[j][i];
+-                }
+-                newMatrixRow++;
+-            }
+-        }
+-
+-        int i;
+-        for(i = 0; newMatrix[i][0] != null; i++);
+-
+-        String finalMatrix[][] = new String[i][newMatrix[0].length];
+-        for (i = 0; i < finalMatrix.length; i++) {
+-            for (int j = 0; j < finalMatrix[i].length; j++)
+-                finalMatrix[i][j] = newMatrix[i][j];
+-        }
+-
+-        return finalMatrix;
+-    }*/
+-
+     public static String[][] RemoveDuplicate (String[][] array, String Header) {
+-
+         int row = array.length;
+-        int temp = row;
+         int col = array[0].length;
+-        int colRemove = 0;
+-        int rowNew = temp;
+-        int DelRow = 0;
+-        String[] CompareSet=new String[row];
+-
+-
++        int colHeader = 0;
++        int Duplicatecnt=0;
++        String[] CompareSet = new String[row];
+         for (int i = 0; i < row; i++) {
+             if (i == 0) {
+                 for (int j = 0, currColumn = 0; j < col; j++) {
+                     if (Header.equalsIgnoreCase(array[i][j])) {
+-                        colRemove = j;
++                        colHeader = j;
+                     }
+                 }
+             }
+             for (int j = 0; j < col; j++) {
+-                if(j==colRemove){
+-
+-
++                if (j == colHeader) {
++                    CompareSet[i] = array[i][j];
+                 }
+             }
+         }
+-        int[] Deleterow = new int[DelRow];
+-        if(DelRow>0) {
+-
+-            int k = 0;
+-            for (int i = 0; i < row; i++) {
+-                for (int j = 0, currColumn = 0; j < col; j++) {
+-                    if (j == colRemove && array[i][j].isEmpty()) {
+-                        Deleterow[k++] = i;
+-
++            for (int i = 0; i < CompareSet.length; i++) {
++                for (int j = 0; j < CompareSet.length; j++) {
++                    if (CompareSet[i].equals(CompareSet[j]) && i != j) {
++                        Duplicatecnt++;
+                     }
+-
+                 }
+-
+             }
+-        }
+-        System.out.println(rowNew);
+-
+-        int currrow=0;
+-        String[][] newArray = new String[rowNew][col];
+-        for (int i = 0; i < row; i++) {
+-            boolean Est = true;
+-            for (int l = 0; l < Deleterow.length; l++) {
+-                if (Deleterow[l] == i) {
+-                    Est = false;
+-                }
++        Duplicatecnt/=2;
++            int[] OrRow = new int[CompareSet.length-Duplicatecnt];
++            String[] CompareSet2 = new String[CompareSet.length-Duplicatecnt];
++            int currRow=0;
++        for (int i = 0; i < CompareSet.length; i++) {
++            boolean Exist =false;
++            for (int j=0; j < CompareSet2.length; j++) {
++                if (CompareSet[i].equalsIgnoreCase(CompareSet2[j])) {
++                   Exist=true;
++                }
++            }
++            if(Exist==false){
++                OrRow[currRow]=i;
++                CompareSet2[currRow]=CompareSet[i];
++                currRow++;
+             }
+-            if (Est) {
+-                for (int j = 0,currcolumn=0; j < col; j++) {
+-                    newArray[currrow][currcolumn++] = array[i][j];
+-                }
+-                currrow++;
+-            }
+-        }
+-        return newArray;
++        }
++        String[][] newArray =new String[OrRow.length][col];
++        int newRow=0;
++        for (int i = 0; i< array.length; i++) {
++            for(int k =0;k<OrRow.length;k++) {
++                if(i==OrRow[k]) {
++                    for (int j = 0; j < col; j++) {
++                        newArray[newRow][j]=array[i][j];
++                    }
++                    newRow++;
++                }
++            }
++        }
++       return newArray;
+     }
+-
+ }
+\ No newline at end of file
+Index: src/Table.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.io.*;\r\nimport java.util.Arrays;\r\nimport java.util.HashMap;\r\nimport java.util.Map;\r\nimport java.util.Scanner;\r\nimport java.util.stream.Stream;\r\n\r\npublic class Table {\r\n    private String Path, Regex;\r\n    private int TableNum;\r\n    private String[][] data;\r\n\r\n\r\n    public Table(String path, int tableNum, String regex) {\r\n        File f = new File(path);\r\n        if (f.exists()) {\r\n            Path = path;\r\n        } else {\r\n            try {\r\n                PrintWriter newfile = new PrintWriter(new FileOutputStream(path));\r\n                newfile.println(\"\");\r\n                Path = path;\r\n            } catch (IOException e) {\r\n                System.out.println(\"Problem with file output\");\r\n            }\r\n\r\n        }\r\n        TableNum = tableNum;\r\n        Regex = regex;\r\n        data = GetArray(getPath(), getTableNum(), getRegex());\r\n\r\n    }\r\n\r\n    public String getPath() {\r\n        return Path;\r\n    }\r\n\r\n    public void setPath(String path) {\r\n        Path = path;\r\n    }\r\n\r\n    public String getRegex() {\r\n        return Regex;\r\n    }\r\n\r\n    public void setRegex(String regex) {\r\n        this.Regex = regex;\r\n    }\r\n\r\n    public int getTableNum() {\r\n        return TableNum;\r\n    }\r\n\r\n    public void setTableNum(int tableNum) {\r\n        TableNum = tableNum;\r\n    }\r\n\r\n    public String[][] getData() {\r\n        return data;\r\n    }\r\n\r\n    public void setData(String[][] data) {\r\n        this.data = data;\r\n    }\r\n//MAIN FUCTION--------------------------------------------------------------------------------------------------------------------------------\r\n\r\n    //1)To View Table\r\n    public void ViewTable() {\r\n        tableWithLines(getData());\r\n    }\r\n\r\n    //2)To Add new Table\r\n    public void AddTable(String[][] Input) {\r\n        NewTable(getPath(), Input, getRegex());\r\n    }\r\n\r\n    //3)To Remove Certain column in view\r\n    public void RemoveColumnView(String Header) {\r\n        RemoveColV(getData(), Header);\r\n    }\r\n\r\n    //4)To Remove Certain column in object\r\n    public void RemoveColumnSet(String Header) {\r\n        RemoveColS(getData(), Header);\r\n    }\r\n\r\n    //5)To Remove Certain row with empty column in view\r\n    public void RemoveNullSet(String Header) {\r\n        RemovenullS(getData(), Header);\r\n    }\r\n\r\n    //5)To Remove Certain row with empty column in object\r\n    public void RemoveNullView(String Header) {\r\n        RemovenullV(getData(), Header);\r\n    }\r\n    //6)To Concatenate Two table\r\n\r\n\r\n    public String[][] Concatenate(String[][] FirstTable, String[][] SecondTable, char Type_H_or_V) {\r\n\r\n        String Concated[][] = Concat(FirstTable, SecondTable, Type_H_or_V);\r\n        return Concated;\r\n    }\r\n\r\n    public  void RangeColumnView(String HeaderRange[]){\r\n        RangeColView(getData(),HeaderRange);\r\n    }\r\n\r\n\r\n    //\r\n//---------------------------------------------------------------------------------------------------------------------------------------------------\r\n\r\n    public String[][] GetArray(String file, int TableNum, String regex) {\r\n        int i = 0;\r\n        int tablenum = TableNum;\r\n        //for new table\r\n        File newFile = new File(file);\r\n        if (newFile.length() == 0) {\r\n            //String[][] Element={};\r\n            // return Element;\r\n            return null;\r\n        }\r\n\r\n        int Headerlength = GetTableDetail(file, tablenum, regex)[1];\r\n        int Tableline = GetTableDetail(file, tablenum, regex)[0];\r\n        int l = 0;\r\n        String[][] Element = new String[Tableline][Headerlength];\r\n\r\n\r\n        try {\r\n            Scanner in2 = new Scanner(new FileInputStream(file));\r\n\r\n            while (in2.hasNextLine()) {\r\n                String[] current = ((in2.nextLine()).split(regex));\r\n                //System.out.println(\"[\"+l+\"]\");\r\n\r\n                if (i == tablenum - 1 && l < Tableline) {\r\n\r\n                    for (int k = 0; k < Headerlength; ) {\r\n                        Element[l][k] = current[k];\r\n                        //System.out.print(k);\r\n                        k++;\r\n                    }\r\n                    l++;\r\n\r\n                }\r\n\r\n                if (current[0].equals(\"\")) {\r\n                    i++;\r\n                }\r\n            }\r\n\r\n            in2.close();\r\n        } catch (FileNotFoundException e) {\r\n\r\n\r\n        }\r\n        return Element;\r\n\r\n    }\r\n\r\n\r\n    public int[] GetTableDetail(String file, int TableNum, String regex) {\r\n        int i = 0;\r\n        int j = 0;\r\n        int tablenum = TableNum;\r\n        int headerlength = 0;\r\n        int tableline = 0;\r\n\r\n        try {\r\n\r\n\r\n            Scanner in = new Scanner(new FileInputStream(file));\r\n\r\n            while (in.hasNextLine()) {\r\n                String[] current = ((in.nextLine()).split(regex));\r\n\r\n\r\n                if (i == tablenum - 1) {\r\n                    if (j == 0) {\r\n                        headerlength = current.length;\r\n                        j = 1;\r\n\r\n                    }\r\n                    tableline++;\r\n                }\r\n\r\n                if (current[0].equals(\"\")) {\r\n                    i++;\r\n                }\r\n            }\r\n\r\n            in.close();\r\n        } catch (FileNotFoundException e) {\r\n            System.out.println(\"File was not found\");\r\n        }\r\n        tableline -= 1;//To eliminate empty line count\r\n        int[] Details = {tableline, headerlength};\r\n        return Details;\r\n    }\r\n\r\n\r\n    public void tableWithLines(String[][] table) {\r\n        /*\r\n         * leftJustifiedRows - If true, it will add \"-\" as a flag to format string to\r\n         * make it left justified. Otherwise right justified.\r\n         */\r\n        boolean leftJustifiedRows = false;\r\n\r\n        /*\r\n         * Table to print in console in 2-dimensional array. Each sub-array is a row.\r\n         */\r\n\r\n\r\n        /*\r\n         * Calculate appropriate Length of each column by looking at width of data in\r\n         * each column.\r\n         *\r\n         * Map columnLengths is <column_number, column_length>\r\n         */\r\n        Map<Integer, Integer> columnLengths = new HashMap<>();\r\n        Arrays.stream(table).forEach(a -> Stream.iterate(0, (i -> i < a.length), (i -> ++i)).forEach(i -> {\r\n            if (columnLengths.get(i) == null) {\r\n                columnLengths.put(i, 0);\r\n            }\r\n            if (columnLengths.get(i) < a[i].length()) {\r\n                columnLengths.put(i, a[i].length());\r\n            }\r\n        }));\r\n        //System.out.println(\"columnLengths = \" + columnLengths);\r\n\r\n        /*\r\n         * Prepare format String\r\n         */\r\n        final StringBuilder formatString = new StringBuilder(\"\");\r\n        String flag = leftJustifiedRows ? \"-\" : \"\";\r\n        columnLengths.entrySet().stream().forEach(e -> formatString.append(\"| %\" + flag + e.getValue() + \"s \"));\r\n        formatString.append(\"|\\n\");\r\n        // System.out.println(\"formatString = \" + formatString.toString());\r\n\r\n        /*\r\n         * Prepare line for top, bottom & below header row.\r\n         */\r\n        String line = columnLengths.entrySet().stream().reduce(\"\", (ln, b) -> {\r\n            String templn = \"+-\";\r\n            templn = templn + Stream.iterate(0, (i -> i < b.getValue()), (i -> ++i)).reduce(\"\", (ln1, b1) -> ln1 + \"-\",\r\n                    (a1, b1) -> a1 + b1);\r\n            templn = templn + \"-\";\r\n            return ln + templn;\r\n        }, (a, b) -> a + b);\r\n        line = line + \"+\\n\";\r\n        //System.out.println(\"Line = \" + line);\r\n\r\n        /*\r\n         * Print table\r\n         */\r\n        System.out.print(line);\r\n        Arrays.stream(table).limit(1).forEach(a -> System.out.printf(formatString.toString(), a));\r\n        System.out.print(line);\r\n\r\n        Stream.iterate(1, (i -> i < table.length), (i -> ++i))\r\n                .forEach(a -> System.out.printf(formatString.toString(), table[a]));\r\n        System.out.print(line);\r\n    }\r\n\r\n    public void NewTable(String Outputfile, String[][] InputTable, String regex) {\r\n\r\n        try {\r\n            PrintWriter out = new PrintWriter(new FileOutputStream(Outputfile, true));\r\n            for (int row = 0; row < InputTable.length; row++) {\r\n                for (int col = 0; col < InputTable[row].length; col++) {\r\n                    out.print(InputTable[row][col]);\r\n                    out.print(regex);\r\n                }\r\n                out.println();\r\n            }\r\n            out.println();\r\n\r\n            out.close();\r\n        } catch (IOException e) {\r\n            System.out.println(\"Problem with file output\");\r\n        }\r\n\r\n        try {\r\n            Scanner in2 = new Scanner(new FileInputStream(Outputfile));\r\n            int i = 0;\r\n            if (in2.hasNextLine() == false) {\r\n                in2.close();\r\n            }\r\n            while (in2.hasNextLine()) {\r\n\r\n                String[] current = ((in2.nextLine()).split(\",\"));\r\n\r\n\r\n                if (current[0].equals(\"\")) {\r\n                    i++;\r\n                }\r\n            }\r\n\r\n            in2.close();\r\n\r\n            setTableNum(i);\r\n            System.out.println(getTableNum());\r\n            setData(GetArray(getPath(), getTableNum(), getRegex()));\r\n        } catch (FileNotFoundException e) {\r\n            System.out.println(\"File was not found\");\r\n        }\r\n\r\n        ViewTable();\r\n\r\n    }\r\n\r\n    //New-------------------------------------------------------------------------------------------------------------\r\n    public void RemoveColV(String[][] array, String Header) {\r\n\r\n        int row = array.length;\r\n        int col = array[0].length;\r\n        int colRemove = 0;\r\n\r\n        String[][] newArray = new String[row][col - 1]; //new Array will have one column less\r\n        for (int i = 0; i < row; i++) {\r\n            if (i == 0) {\r\n                for (int j = 0, currColumn = 0; j < col; j++) {\r\n                    if (Header.equalsIgnoreCase(array[i][j])) {\r\n                        colRemove = j;\r\n                    }\r\n                }\r\n            }\r\n        }\r\n        for (int i = 0; i < row; i++) {\r\n            for (int j = 0, currColumn = 0; j < col; j++) {\r\n                if (j != colRemove) {\r\n                    newArray[i][currColumn++] = array[i][j];\r\n                }\r\n            }\r\n        }\r\n\r\n        tableWithLines(newArray);\r\n    }\r\n\r\n    //New-------------------------------------------------------------------------------------------------------------\r\n    public void RemoveColS(String[][] array, String Header) {\r\n\r\n        int row = array.length;\r\n        int col = array[0].length;\r\n        int colRemove = 0;\r\n\r\n        String[][] newArray = new String[row][col - 1]; //new Array will have one column less\r\n        for (int i = 0; i < row; i++) {\r\n            if (i == 0) {\r\n                for (int j = 0, currColumn = 0; j < col; j++) {\r\n                    if (Header.equalsIgnoreCase(array[i][j])) {\r\n                        colRemove = j;\r\n                    }\r\n                }\r\n            }\r\n        }\r\n        for (int i = 0; i < row; i++) {\r\n            for (int j = 0, currColumn = 0; j < col; j++) {\r\n                if (j != colRemove) {\r\n                    newArray[i][currColumn++] = array[i][j];\r\n                }\r\n            }\r\n        }\r\n\r\n        setData(newArray);\r\n        ViewTable();\r\n    }\r\n\r\n    //New-------------------------------------------------------------------------------------------------------------\r\n    public void RemovenullS(String[][] array, String Header) {\r\n\r\n        int row = array.length;\r\n        int temp = row;\r\n        int col = array[0].length;\r\n        int colRemove = 0;\r\n        int rowNew = temp;\r\n        int DelRow = 0;\r\n\r\n\r\n        for (int i = 0; i < row; i++) {\r\n            if (i == 0) {\r\n                for (int j = 0, currColumn = 0; j < col; j++) {\r\n                    if (Header.equalsIgnoreCase(array[i][j])) {\r\n                        colRemove = j;\r\n                    }\r\n                }\r\n            }\r\n            for (int j = 0; j < col; j++) {\r\n                if (j == colRemove && array[i][j].isEmpty()) {\r\n                    rowNew -= 1;\r\n                    DelRow += 1;\r\n                }\r\n            }\r\n        }\r\n        int[] Deleterow = new int[DelRow];\r\n        if (DelRow > 0) {\r\n\r\n            int k = 0;\r\n            for (int i = 0; i < row; i++) {\r\n                for (int j = 0, currColumn = 0; j < col; j++) {\r\n                    if (j == colRemove && array[i][j].isEmpty()) {\r\n                        Deleterow[k++] = i;\r\n\r\n                    }\r\n\r\n                }\r\n\r\n            }\r\n        }\r\n        System.out.println(rowNew);\r\n\r\n        int currrow = 0;\r\n        String[][] newArray = new String[rowNew][col];\r\n        for (int i = 0; i < row; i++) {\r\n            boolean Est = true;\r\n            for (int l = 0; l < Deleterow.length; l++) {\r\n                if (Deleterow[l] == i) {\r\n                    Est = false;\r\n                }\r\n            }\r\n            if (Est) {\r\n                for (int j = 0, currcolumn = 0; j < col; j++) {\r\n                    newArray[currrow][currcolumn++] = array[i][j];\r\n                }\r\n                currrow++;\r\n            }\r\n        }\r\n        setData(newArray);\r\n        ViewTable();\r\n    }\r\n\r\n    //----------------------------------------------------------------------------------------------------------------------------------\r\n    public void RemovenullV(String[][] array, String Header) {\r\n\r\n        int row = array.length;\r\n        int temp = row;\r\n        int col = array[0].length;\r\n        int colRemove = 0;\r\n        int rowNew = temp;\r\n        int DelRow = 0;\r\n\r\n\r\n        for (int i = 0; i < row; i++) {\r\n            if (i == 0) {\r\n                for (int j = 0, currColumn = 0; j < col; j++) {\r\n                    if (Header.equalsIgnoreCase(array[i][j])) {\r\n                        colRemove = j;\r\n                    }\r\n                }\r\n            }\r\n            for (int j = 0; j < col; j++) {\r\n                if (j == colRemove && array[i][j].isEmpty()) {\r\n                    rowNew -= 1;\r\n                    DelRow += 1;\r\n                }\r\n            }\r\n        }\r\n        int[] Deleterow = new int[DelRow];\r\n        if (DelRow > 0) {\r\n\r\n            int k = 0;\r\n            for (int i = 0; i < row; i++) {\r\n                for (int j = 0, currColumn = 0; j < col; j++) {\r\n                    if (j == colRemove && array[i][j].isEmpty()) {\r\n                        Deleterow[k++] = i;\r\n\r\n                    }\r\n\r\n                }\r\n\r\n            }\r\n        }\r\n        System.out.println(rowNew);\r\n\r\n        int currrow = 0;\r\n        String[][] newArray = new String[rowNew][col];\r\n        for (int i = 0; i < row; i++) {\r\n            boolean Est = true;\r\n            for (int l = 0; l < Deleterow.length; l++) {\r\n                if (Deleterow[l] == i) {\r\n                    Est = false;\r\n                }\r\n            }\r\n            if (Est) {\r\n                for (int j = 0, currcolumn = 0; j < col; j++) {\r\n                    newArray[currrow][currcolumn++] = array[i][j];\r\n                }\r\n                currrow++;\r\n            }\r\n        }\r\n        tableWithLines(newArray);\r\n    }\r\n\r\n\r\n    //Concatenate method-----------------------------------------------------------------------------------------------------------------------------------\r\n    public static String[][] Concat(String[][] FirstArray, String[][] SecondArray, char Type_H_or_V) {\r\n        byte Type;\r\n        if (Type_H_or_V == 'H' || Type_H_or_V == 'h') {\r\n            Type = 1;\r\n        } else {\r\n            Type = 0;\r\n        }\r\n\r\n        String[][] data = Two_d_OtoS(arrayConcat(FirstArray, SecondArray, Type));\r\n        return data;\r\n\r\n    }\r\n\r\n    public static Object[][] Two_d_StoO(String[][] Data) {\r\n        Object[][] OData = new Object[Data.length][Data[0].length];\r\n        for (int row = 0; row < Data.length; row++) {\r\n            for (int col = 0; col < Data[row].length; col++) {\r\n                OData[row][col] = Data[row][col].toString();\r\n\r\n            }\r\n        }\r\n        return OData;\r\n    }\r\n\r\n\r\n    public static String[][] Two_d_OtoS(Object[][] Data) {\r\n        String[][] SData = new String[Data.length][Data[0].length];\r\n        for (int row = 0; row < Data.length; row++) {\r\n            for (int col = 0; col < Data[row].length; col++) {\r\n                SData[row][col] = Data[row][col].toString();\r\n\r\n            }\r\n        }\r\n        return SData;\r\n\r\n\r\n    }\r\n\r\n\r\n    public static final byte ARRAY_CONCAT_HORIZ = 0, ARRAY_CONCAT_VERT = 1;\r\n\r\n    public static Object[][] arrayConcat(String[][] SDataA, String[][] SDataB, byte concatDirection) {\r\n\r\n        Object[][] a = Two_d_StoO(SDataA);\r\n        Object[][] b = Two_d_StoO(SDataB);\r\n\r\n\r\n        if (concatDirection == ARRAY_CONCAT_HORIZ && a[0].length == b[0].length) {\r\n            return Arrays.stream(arrayConcat(a, b)).map(Object[].class::cast)\r\n                    .toArray(Object[][]::new);\r\n        } else if (concatDirection == ARRAY_CONCAT_VERT && a.length == b.length) {\r\n            Object[][] arr = new Object[a.length][a[0].length + b[0].length];\r\n            for (int i = 0; i < a.length; i++) {\r\n                arr[i] = arrayConcat(a[i], b[i]);\r\n            }\r\n\r\n            return arr;\r\n        } else\r\n            throw new RuntimeException(\"Attempted to concatenate arrays of incompatible sizes.\");\r\n    }\r\n\r\n    /*\r\n     * Concatenates 2 1D arrays\r\n     */\r\n    public static Object[] arrayConcat(Object[] a, Object[] b) {\r\n        Object[] arr = new Object[a.length + b.length];\r\n        System.arraycopy(a, 0, arr, 0, a.length);\r\n        System.arraycopy(b, 0, arr, a.length, b.length);\r\n        return arr;\r\n    }\r\n\r\n\r\n//GetColumn--------------------------------------------------------------------------------------------------------------------------\r\n\r\n    public void RangeColView(String[][] array, String[] Header) {\r\n        int row = array.length;\r\n        int col = array[0].length;\r\n        int RemoveNum = 0;\r\n        int k = 0;\r\n        //new Array will have one column less\r\n        for (int i = 0; i < row; i++) {\r\n            if (i == 0) {\r\n                for (int j = 0; j < col; j++) {\r\n                    for (int p = 0; p < Header.length; p++) {\r\n                        String Head = Header[p];\r\n                        if (Head.equalsIgnoreCase(array[i][j])) {\r\n\r\n                            RemoveNum++;\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n            break;\r\n        }\r\n        int[] Remove = new int[RemoveNum];\r\n        for (int i = 0; i < row; i++) {\r\n            if (i == 0) {\r\n                for (int j = 0; j < col; j++) {\r\n                    for (int p = 0; p < Header.length; p++) {\r\n                        String Head = Header[p];\r\n                        if (Head.equalsIgnoreCase(array[i][j])) {\r\n\r\n                            Remove[k] = j;\r\n                            k++;\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n            break;\r\n        }\r\n        System.out.println(Arrays.toString(Remove));\r\n        String[][] newArray = new String[row][RemoveNum];\r\n        System.out.println();\r\n\r\n        for (int i = 0; i < row; i++) {\r\n            for (int j = 0, currColumn = 0; j < col; ) {\r\n                for (k = 0; k < Remove.length; k++) {\r\n                    if (j == Remove[k]) {\r\n                        newArray[i][currColumn++] = array[i][j];\r\n                    }\r\n                }\r\n                j++;\r\n\r\n            }\r\n        }\r\n        tableWithLines(newArray);\r\n    }\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n}\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Table.java	(revision e359635f8d374a2d3b973a1bfca3891f20659818)
++++ src/Table.java	(date 1609952033260)
+@@ -107,6 +107,7 @@
+     }
+ 
+ 
++
+     //
+ //---------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+Index: src/Test2.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class Test2 {\r\n    public static void main(String[] args) {\r\n        String[][] names = {{\"Sam\", \"Carl\", \"Smith\"}, {\"stra\", \"Robert\", \"Smith\"}, {\"james\", null, \"Smith\"},{\"kate\", \"Robert\", \"Smith\"}};\r\n\r\n        String[][] board = Removenull(names, \"Carl\");\r\n        //System.out.println(names[1][1] == null);\r\n\r\n\r\n        for (int row = 0; row < names.length; row++) {\r\n            for (int col = 0; col < names[row].length; col++) {\r\n                System.out.printf(\"%10s\", names[row][col]);\r\n\r\n            }\r\n            System.out.println();\r\n        }\r\n        System.out.println();\r\n        System.out.println();\r\n\r\n        for (int row = 0; row < board.length; row++) {\r\n            for (int col = 0; col < board[row].length; col++) {\r\n                System.out.printf(\"%10s\", board[row][col]);\r\n\r\n            }\r\n            System.out.println();\r\n        }\r\n\r\n\r\n    }\r\n\r\n    public static String[][] Removenull(String[][] array, String Header) {\r\n\r\n        int row = array.length;\r\n        int temp = row;\r\n        int col = array[0].length;\r\n        int colRemove = 0;\r\n        int rowNew = temp;\r\n        int DelRow = 0;\r\n\r\n\r\n        for (int i = 0; i < row; i++) {\r\n            if (i == 0) {\r\n                for (int j = 0, currColumn = 0; j < col; j++) {\r\n                    if (Header.equalsIgnoreCase(array[i][j])) {\r\n                        colRemove = j;\r\n                    }\r\n                }\r\n            }\r\n            for (int j = 0; j < col; j++) {\r\n                if (j == colRemove && array[i][j] == null) {\r\n                    rowNew -= 1;\r\n                    DelRow += 1;\r\n                }\r\n            }\r\n        }\r\n        int[] Deleterow = new int[DelRow];\r\n        if(DelRow>0) {\r\n\r\n            int k = 0;\r\n            for (int i = 0; i < row; i++) {\r\n                for (int j = 0, currColumn = 0; j < col; j++) {\r\n                    if (j == colRemove && array[i][j] == null) {\r\n                        Deleterow[k++] = i;\r\n\r\n                    }\r\n\r\n                }\r\n\r\n            }\r\n        }\r\n            System.out.println(rowNew);\r\n\r\n        int currrow=0;\r\n        String[][] newArray = new String[rowNew][col];\r\n            for (int i = 0; i < row; i++) {\r\n                boolean Est = true;\r\n                for (int l = 0; l < Deleterow.length; l++) {\r\n                    if (Deleterow[l] == i) {\r\n                        Est = false;\r\n                    }\r\n                }\r\n                if (Est) {\r\n                    for (int j = 0,currcolumn=0; j < col; j++) {\r\n                        newArray[currrow][currcolumn++] = array[i][j];\r\n                    }\r\n                    currrow++;\r\n                }\r\n            }\r\n        return newArray;\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Test2.java	(revision e359635f8d374a2d3b973a1bfca3891f20659818)
++++ src/Test2.java	(date 1609950591576)
+@@ -2,7 +2,7 @@
+     public static void main(String[] args) {
+         String[][] names = {{"Sam", "Carl", "Smith"}, {"stra", "Robert", "Smith"}, {"james", null, "Smith"},{"kate", "Robert", "Smith"}};
+ 
+-        String[][] board = Removenull(names, "Carl");
++        String[][] board = RangeRow(names, 3,1);
+         //System.out.println(names[1][1] == null);
+ 
+ 
+@@ -27,65 +27,29 @@
+ 
+     }
+ 
+-    public static String[][] Removenull(String[][] array, String Header) {
++    public static String[][] RangeRow(String[][] array,int Max,int Min ) {
+ 
+         int row = array.length;
+         int temp = row;
+         int col = array[0].length;
+-        int colRemove = 0;
+-        int rowNew = temp;
+-        int DelRow = 0;
+-
+-
++        String[][] newArray= new String[Max-Min+1][col];
++        int currRow=1;
+         for (int i = 0; i < row; i++) {
+             if (i == 0) {
+-                for (int j = 0, currColumn = 0; j < col; j++) {
+-                    if (Header.equalsIgnoreCase(array[i][j])) {
+-                        colRemove = j;
+-                    }
+-                }
+-            }
+-            for (int j = 0; j < col; j++) {
+-                if (j == colRemove && array[i][j] == null) {
+-                    rowNew -= 1;
+-                    DelRow += 1;
++                for (int j = 0; j < col; j++) {
++                    newArray[0][j]=array[i][j];
+                 }
+             }
+-        }
+-        int[] Deleterow = new int[DelRow];
+-        if(DelRow>0) {
+-
+-            int k = 0;
+-            for (int i = 0; i < row; i++) {
+-                for (int j = 0, currColumn = 0; j < col; j++) {
+-                    if (j == colRemove && array[i][j] == null) {
+-                        Deleterow[k++] = i;
+-
+-                    }
+-
+-                }
+-
+-            }
+-        }
+-            System.out.println(rowNew);
+-
+-        int currrow=0;
+-        String[][] newArray = new String[rowNew][col];
+-            for (int i = 0; i < row; i++) {
+-                boolean Est = true;
+-                for (int l = 0; l < Deleterow.length; l++) {
+-                    if (Deleterow[l] == i) {
+-                        Est = false;
+-                    }
+-                }
+-                if (Est) {
+-                    for (int j = 0,currcolumn=0; j < col; j++) {
+-                        newArray[currrow][currcolumn++] = array[i][j];
+-                    }
+-                    currrow++;
++            if (i>=Min && i<Max) {
++                for (int j = 0; j < col; j++) {
++                    newArray[currRow][j]=array[i][j];
++                    }
++                currRow++;
+                 }
+             }
+         return newArray;
++
++
+     }
+ }
+ 
+Index: src/Test.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.lang.reflect.Array;\r\nimport java.util.ArrayList;\r\nimport java.util.Arrays;\r\n\r\npublic class Test{\r\n\r\n\r\n    public static void main(String[] args) {\r\n        String[][] names = {{\"Sam\", \"Carl\", \"joe\",\"Smith\"}, {\"stra\", \"Robert\", \"Smith\",\"Sam\", \"Carl\", \"Smith\",\"joe\"}, {\"james\", null, \"Smith\",\"Sam\", \"Carl\", \"Smith\"},{\"kate\", \"Robert\", \"Smith\",\"Sam\", \"Carl\", \"Smith\"}};\r\n        String[] Header ={\"Sam\",\"Smith\",\"carl\",\"joe\"};\r\n        String[][] board = RangeCol(names, Header);\r\n        //System.out.println(names[1][1] == null);\r\n\r\n\r\n       /* for (int row = 0; row < names.length; row++) {\r\n            for (int col = 0; col < names[row].length; col++) {\r\n                System.out.printf(\"%10s\", names[row][col]);\r\n\r\n            }\r\n            System.out.println();\r\n        }*/\r\n        System.out.println();\r\n        System.out.println();\r\n\r\n        for (int row = 0; row < board.length; row++) {\r\n            for (int col = 0; col < board[row].length; col++) {\r\n                System.out.printf(\"%10s\", board[row][col]);\r\n\r\n            }\r\n            System.out.println();\r\n        }\r\n\r\n    }\r\n    public static String[][] RangeCol(String[][] array,String[] Header) {\r\n        int row = array.length;\r\n        int col = array[0].length;\r\n        int RemoveNum=0;\r\n        int k =0;\r\n        //new Array will have one column less\r\n        for (int i = 0; i < row; i++) {\r\n            if (i == 0) {\r\n                for (int j = 0; j < col ; j++) {\r\n                    for (int p = 0; p < Header.length;p++) {\r\n                        String Head = Header[p];\r\n                        if (Head.equalsIgnoreCase(array[i][j])) {\r\n\r\n                            RemoveNum++;\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n            break;\r\n        }\r\n        int[] Remove= new int[RemoveNum];\r\n        for (int i = 0; i < row; i++) {\r\n            if (i == 0) {\r\n                for (int j = 0; j < col ; j++) {\r\n                    for (int p = 0; p < Header.length;p++) {\r\n                        String Head = Header[p];\r\n                        if (Head.equalsIgnoreCase(array[i][j])) {\r\n\r\n                            Remove[k] = j;\r\n                            k++;\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n            break;\r\n        }\r\n        System.out.println(Arrays.toString(Remove));\r\n        String[][] newArray = new String[row][RemoveNum];\r\n        System.out.println();\r\n\r\n        for (int i = 0; i < row; i++) {\r\n            for (int j = 0, currColumn = 0; j < col; ) {\r\n                for ( k = 0; k < Remove.length; k++) {\r\n                    if (j == Remove[k]) {\r\n                        newArray[i][currColumn++] = array[i][j];\r\n                    }\r\n                }\r\n                j++;\r\n\r\n            }\r\n        }\r\n\r\n\r\n\r\n        return newArray;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Test.java	(revision e359635f8d374a2d3b973a1bfca3891f20659818)
++++ src/Test.java	(date 1610017346131)
+@@ -85,6 +85,7 @@
+ 
+ 
+ 
++
+         return newArray;
+     }
+ }
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"6e0e3463-9a7e-427b-bc0f-b246fa58775f\" name=\"Default Changelist\" comment=\"list of method (in construction)\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/CSVExample.csv\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/CSVExample.csv\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Main.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Main.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Table.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Table.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Test.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Test.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/tets.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/tets.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1luRP3ft5mvxQXMZnDkTWkJfPcJ\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showExcludedFiles\" value=\"false\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/src\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\ALIFF\\Desktop\\UM\\6WIX1002(FUNDPROG)\\CVS-Library\\src\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\ALIFF\\Desktop\\UM\\6WIX1002(FUNDPROG)\\CVS-Library\\src\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.Main\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\r\n      <module name=\"CVS-Library\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"SimpleCSVreader\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"SimpleCSVreader\" />\r\n      <module name=\"CVS-Library\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Test\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Test\" />\r\n      <module name=\"CVS-Library\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Test2\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Test2\" />\r\n      <module name=\"CVS-Library\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"tets\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"tets\" />\r\n      <module name=\"CVS-Library\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.Main\" />\r\n        <item itemvalue=\"Application.Test\" />\r\n        <item itemvalue=\"Application.tets\" />\r\n        <item itemvalue=\"Application.Test2\" />\r\n        <item itemvalue=\"Application.SimpleCSVreader\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"6e0e3463-9a7e-427b-bc0f-b246fa58775f\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1608444963178</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1608444963178</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"hi\">\r\n      <created>1608476866791</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1608476866791</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"list of method (in construction)\">\r\n      <created>1608479911411</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1608479911411</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"list of method (in construction)\">\r\n      <created>1608777335101</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1608777335101</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"list of method (in construction)\">\r\n      <created>1609383833856</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1609383833856</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"hi\" />\r\n    <MESSAGE value=\"list of method (in construction)\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"list of method (in construction)\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"540\" y=\"81\" key=\"#Auto_Import\" timestamp=\"1608784530237\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"540\" y=\"81\" key=\"#Auto_Import/0.0.1536.824@0.0.1536.824\" timestamp=\"1608784530237\" />\r\n    <state x=\"574\" y=\"128\" key=\"#com.intellij.ide.util.MemberChooser\" timestamp=\"1608863818119\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"574\" y=\"128\" key=\"#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824\" timestamp=\"1608863818119\" />\r\n    <state x=\"549\" y=\"154\" key=\"FileChooserDialogImpl\" timestamp=\"1609717943506\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"549\" y=\"154\" key=\"FileChooserDialogImpl/0.0.1536.824@0.0.1536.824\" timestamp=\"1609717943506\" />\r\n    <state width=\"1493\" height=\"2\" key=\"GridCell.Tab.0.bottom\" timestamp=\"1609948500626\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"2\" key=\"GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824\" timestamp=\"1609948500626\" />\r\n    <state width=\"1493\" height=\"2\" key=\"GridCell.Tab.0.center\" timestamp=\"1609948500626\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"2\" key=\"GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824\" timestamp=\"1609948500626\" />\r\n    <state width=\"1493\" height=\"2\" key=\"GridCell.Tab.0.left\" timestamp=\"1609948500626\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"2\" key=\"GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824\" timestamp=\"1609948500626\" />\r\n    <state width=\"1493\" height=\"2\" key=\"GridCell.Tab.0.right\" timestamp=\"1609948500626\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"2\" key=\"GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824\" timestamp=\"1609948500626\" />\r\n    <state width=\"1493\" height=\"261\" key=\"GridCell.Tab.1.bottom\" timestamp=\"1608994474490\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"261\" key=\"GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824\" timestamp=\"1608994474490\" />\r\n    <state width=\"1493\" height=\"261\" key=\"GridCell.Tab.1.center\" timestamp=\"1608994474490\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"261\" key=\"GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824\" timestamp=\"1608994474490\" />\r\n    <state width=\"1493\" height=\"261\" key=\"GridCell.Tab.1.left\" timestamp=\"1608994474490\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"261\" key=\"GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824\" timestamp=\"1608994474490\" />\r\n    <state width=\"1493\" height=\"261\" key=\"GridCell.Tab.1.right\" timestamp=\"1608994474490\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"261\" key=\"GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824\" timestamp=\"1608994474490\" />\r\n    <state x=\"361\" y=\"145\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1609738355080\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"361\" y=\"145\" key=\"Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824\" timestamp=\"1609738355080\" />\r\n    <state x=\"586\" y=\"326\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2\" timestamp=\"1608476840816\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"586\" y=\"326\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824\" timestamp=\"1608476840816\" />\r\n    <state x=\"209\" y=\"33\" key=\"new project wizard\" timestamp=\"1609717945152\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"209\" y=\"33\" key=\"new project wizard/0.0.1536.824@0.0.1536.824\" timestamp=\"1609717945152\" />\r\n    <state x=\"469\" y=\"170\" key=\"refactoring.ChangeSignatureDialog\" timestamp=\"1609514665927\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"469\" y=\"170\" key=\"refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824\" timestamp=\"1609514665927\" />\r\n    <state x=\"425\" y=\"187\" key=\"run.anything.popup\" timestamp=\"1609400306427\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"425\" y=\"187\" key=\"run.anything.popup/0.0.1536.824@0.0.1536.824\" timestamp=\"1609400306427\" />\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/CVS_Library$SimpleCSVreader.ic\" NAME=\"SimpleCSVreader Coverage Results\" MODIFIED=\"1608858321093\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision e359635f8d374a2d3b973a1bfca3891f20659818)
++++ .idea/workspace.xml	(date 1610017650184)
+@@ -21,10 +21,13 @@
+   <component name="ChangeListManager">
+     <list default="true" id="6e0e3463-9a7e-427b-bc0f-b246fa58775f" name="Default Changelist" comment="list of method (in construction)">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/CSVExample.csv" beforeDir="false" afterPath="$PROJECT_DIR$/CSVExample.csv" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/CVS-Library/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CVS-Library/Main.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/CVS-Library/Table.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CVS-Library/Table.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/CVS-Library/Test2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CVS-Library/Test2.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/CVS-Library/tets.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CVS-Library/tets.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Table.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Test2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test2.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/tets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tets.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -60,7 +63,7 @@
+       <recent name="C:\Users\ALIFF\Desktop\UM\6WIX1002(FUNDPROG)\CVS-Library\src" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Application.Main">
++  <component name="RunManager" selected="Application.tets">
+     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="Main" />
+       <module name="CVS-Library" />
+@@ -98,10 +101,10 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Application.Main" />
+-        <item itemvalue="Application.Test" />
+         <item itemvalue="Application.tets" />
+         <item itemvalue="Application.Test2" />
++        <item itemvalue="Application.Main" />
++        <item itemvalue="Application.Test" />
+         <item itemvalue="Application.SimpleCSVreader" />
+       </list>
+     </recent_temporary>
+@@ -176,22 +179,22 @@
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+     <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1609717943506" />
+-    <state width="1493" height="2" key="GridCell.Tab.0.bottom" timestamp="1609948500626">
++    <state width="1493" height="219" key="GridCell.Tab.0.bottom" timestamp="1610017575640">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state width="1493" height="2" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609948500626" />
+-    <state width="1493" height="2" key="GridCell.Tab.0.center" timestamp="1609948500626">
++    <state width="1493" height="219" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610017575640" />
++    <state width="1493" height="219" key="GridCell.Tab.0.center" timestamp="1610017575640">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state width="1493" height="2" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1609948500626" />
+-    <state width="1493" height="2" key="GridCell.Tab.0.left" timestamp="1609948500626">
++    <state width="1493" height="219" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1610017575640" />
++    <state width="1493" height="219" key="GridCell.Tab.0.left" timestamp="1610017575640">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state width="1493" height="2" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1609948500626" />
+-    <state width="1493" height="2" key="GridCell.Tab.0.right" timestamp="1609948500626">
++    <state width="1493" height="219" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1610017575640" />
++    <state width="1493" height="219" key="GridCell.Tab.0.right" timestamp="1610017575640">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state width="1493" height="2" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1609948500626" />
++    <state width="1493" height="219" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1610017575640" />
+     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1608994474490">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+@@ -212,10 +215,10 @@
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1609738355080" />
+-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1608476840816">
++    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1610017650166">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1608476840816" />
++    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1610017650166" />
+     <state x="209" y="33" key="new project wizard" timestamp="1609717945152">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>

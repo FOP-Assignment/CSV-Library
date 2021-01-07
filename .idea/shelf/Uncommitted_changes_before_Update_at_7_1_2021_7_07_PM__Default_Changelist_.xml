@@ -1,0 +1,24 @@
+<changelist name="Uncommitted_changes_before_Update_at_7_1_2021_7_07_PM_[Default_Changelist]" date="1610017654282" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_1_2021_7_07_PM_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 7/1/2021 7:07 PM [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/CVS-Library/tets.class" />
+    <option name="AFTER_PATH" value="out/production/CVS-Library/tets.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_1_2021_7_07_PM_[Default_Changelist]/tets.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/CVS-Library/Test2.class" />
+    <option name="AFTER_PATH" value="out/production/CVS-Library/Test2.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_1_2021_7_07_PM_[Default_Changelist]/Test2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/CVS-Library/Main.class" />
+    <option name="AFTER_PATH" value="out/production/CVS-Library/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_1_2021_7_07_PM_[Default_Changelist]/Main.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/CVS-Library/Table.class" />
+    <option name="AFTER_PATH" value="out/production/CVS-Library/Table.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_1_2021_7_07_PM_[Default_Changelist]/Table.class" />
+  </binary>
+</changelist>

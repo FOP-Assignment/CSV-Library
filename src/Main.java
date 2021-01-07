@@ -9,7 +9,7 @@ public class Main {
         Table a =new Table("CSVExample.csv",2,",");
         Table b =new Table("CSVExample.csv",3,",");
         Table c =new Table("CSVExample.csv",1,",");
-        a.RangeOfRowView(1, 3);
+       a.RemoveDuplicateView("qtt");
 
 
 
