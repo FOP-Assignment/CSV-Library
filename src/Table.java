@@ -1,4 +1,5 @@
 import java.io.*;
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -120,17 +121,27 @@ public class Table {
         RemoveDupSet(getData(),Header);
     }
 
+    public  void ComputeData(String Operation,String Header,int Min,int Max){
+        System.out.println(ComputeStatistic(getData(),Operation,Header,Min,Max));
+    }
+    public void SorterView (String Header){
+        tableWithLines(Sort(getData(),Header));
+    }
+    public void SorterSet (String Header){
+        setData(Sort(getData(),Header));
+        tableWithLines(getData());
+
+    }
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
 
     public String[][] GetArray(String file, int TableNum, String regex) {
         int i = 0;
         int tablenum = TableNum;
-        //for new table
+
         File newFile = new File(file);
         if (newFile.length() == 0) {
-            //String[][] Element={};
-            // return Element;
             return null;
         }
 
@@ -779,7 +790,267 @@ public class Table {
         }
         tableWithLines(newArray);
     }
+
+    public static String[] SelectRange(String[][] array,String  Header,int Min,int Max) {
+        int row = array.length;
+        int col = array[0].length;
+        int RemoveNum = 0;
+
+        String[] newArray = new String[Max-Min+1];
+        int currRow=0;
+        for (int i = 0; i < row; i++) {
+            if (i == 0) {
+                for (int j = 0; j < col; j++) {
+
+                    if (Header.equalsIgnoreCase(array[i][j])) {
+                        RemoveNum=j;
+
+                    }
+
+                }
+            }
+            if (i >= Min && i <= Max) {
+                for (int j = 0; j < col; j++) {
+
+                    if (j == RemoveNum) {
+                        newArray[currRow++] = array[i][j];
+
+                    }
+
+                }
+            }
+        }
+        return newArray;
+    }
+
+    public static double[] SarrayTodouble (String[] arrString) {
+        double[] arrDouble = new double[arrString.length];
+        for(int i=0; i<arrString.length; i++)
+        {
+            arrDouble[i] = Double.parseDouble(arrString[i]);
+        }
+        return arrDouble;
+    }
+
+
+    public static double ComputeStatistic (String[][] array,String Operation,String Header,int Min,int Max) {
+
+        String[] range = SelectRange(array,Header,Min,Max);
+        double[] Value =SarrayTodouble(range);
+        double Answer =0;
+
+        if(Operation.equalsIgnoreCase("Varience")){
+            Answer=variance(Value);
+
+        }
+        else if(Operation.equalsIgnoreCase("StandardDeviation")){
+            Answer=standardDeviation(Value);
+
+        }
+        else if(Operation.equalsIgnoreCase("Max")){
+            Answer=max(Value);
+
+        }
+        else if(Operation.equalsIgnoreCase("Min")){
+            Answer=min(Value);
+
+        }
+        else if(Operation.equalsIgnoreCase("Median")){
+            Answer=median(Value);
+
+        }
+        else if(Operation.equalsIgnoreCase("Mode")){
+            Answer=mode(Value);
+
+        }
+        else if(Operation.equalsIgnoreCase("Mean")){
+            Answer=mean(Value);
+
+        }
+        return Answer;
+
+    }
+
+
+    // Method for getting the maximum value-----------------------------------------------------------------------------------------------------------
+    public static double max(double[] inputArray){
+        double maxValue = inputArray[0];
+        for(int i=1;i < inputArray.length;i++){
+            if(inputArray[i] > maxValue){
+                maxValue = inputArray[i];
+            }
+        }
+        return maxValue;
+    }
+    // Method for getting the minimum value----------------------------------------------------------------------------------------------------------
+    public static double min(double[] inputArray){
+        double minValue = inputArray[0];
+        for(int i=1;i<inputArray.length;i++){
+            if(inputArray[i] < minValue){
+                minValue = inputArray[i];
+            }
+        }
+        return minValue;
+    }
+//Compute variance-------------------------------------------------------------------------------------------------------------------------------
+// Java program to find variance
+// and standard deviation of
+// given array.
+
+    // Function for calculating
+    // variance
+    public static double variance(double a[])
+    {
+        // Compute mean (average
+        // of elements)
+        double sum = 0;
+
+        for (int i = 0; i < a.length; i++)
+            sum += a[i];
+        double mean = (double)sum /
+                (double)a.length;
+
+        // Compute sum squared
+        // differences with mean.
+        double sqDiff = 0;
+        for (int i = 0; i < a.length; i++)
+            sqDiff += (a[i] - mean) *
+                    (a[i] - mean);
+
+        return (double)sqDiff / a.length;
+    }
+
+    public static double standardDeviation(double b[])
+    {
+        return Math.sqrt(variance(b));
+    }
+
+//MEAN------------------------------------------------------------------------------------------------------------------------------------------
+
+    static double mean(double[] m) {
+        double sum = 0;
+        for (int i = 0; i < m.length; i++) {
+            sum += m[i];
+        }
+        return (sum / m.length);
+    }
+//MEDIAN----------------------------------------------------------------------------------------------------------------------------------------
+
+    // the array double[] m MUST BE SORTED
+    public static double median(double[] m) {
+        int middle = m.length/2;
+        if (m.length%2 == 1) {
+            return m[middle];
+        } else {
+            return (m[middle-1] + m[middle]) / 2.0;
+        }
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------------
+    public static double mode(double[]data) {
+        if (data.length != 0) {
+
+            double maxValue = -1;
+            int maxCount = 0;
+            for (int i = 0; i < data.length; i++) {
+                int count = 0;
+                for (int j = 0; j < data.length; j++) {
+                    if (data[j] == data[i]) {
+                        count++;
+                    }
+                }
+
+                if (count > maxCount) {
+                    maxValue = (int) data[i];
+                    maxCount = count;
+                }
+            }
+            return maxValue;
+
+        } else {
+
+            return Double.NaN;
+        }
+    }
+    //----------------------------------------------------------------------------------------------------------------
+    public static String[][] Sort(String[][] unsort,String objtosort)
+    {
+        int column = unsort[0].length, row = unsort.length;
+
+        for (int i=0; i<column; i++)
+        {
+            if(unsort[0][i].equals(objtosort))
+            {
+                for(int j=1; j<row; j++)
+                {
+                    for(int k=1; k<row-j; k++)
+                    {
+                        if(unsort[k][i].compareTo(unsort[k+1][i])>0)
+                        {
+                            for(int l=0; l<column; l++)
+                            {
+                                String temp = unsort[k][l];
+                                unsort[k][l] = unsort[k+1][l];
+                                unsort[k+1][l] = temp;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        String[][] sorted = new String[row][column];
+        for(int i=0; i<row; i++)
+        {
+            for (int j=0; j<column; j++)
+            {
+                sorted[i][j] = unsort[i][j];
+            }
+        }
+
+        return sorted;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
 
 
 
