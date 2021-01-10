@@ -133,6 +133,21 @@ public class Table {
 
     }
 
+
+    public void StandardScaling(String Header,int Min,int Max){
+       double[] Scaled=stdscale(getData(),Header,Min,Max);
+       for(int i=0;i< Scaled.length;i++){
+           System.out.println(Scaled[i]);
+       }
+    }
+
+    public void MinMAxScalling(String Header,int Min,int Max){
+        double[] Scaled=minmaxscale(getData(),Header,Min,Max);
+        for(int i=0;i< Scaled.length;i++){
+            System.out.println(Scaled[i]);
+        }
+    }
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -1008,6 +1023,36 @@ public class Table {
         }
 
         return sorted;
+    }
+    //-------------------------------------------------------------------------------------------------------------------------
+//StandardScaling-------------------------------------------------------------------------------------------------
+    public static double[] stdscale(String[][] array,String Header,int Min,int Max){
+        String[] range = SelectRange(array,Header,Min,Max);
+        double [] inputArray=SarrayTodouble(range);
+        double[] newarray = new double [inputArray.length];
+        double MeanofArray =mean(inputArray);
+        double SDofArray = standardDeviation(inputArray);
+
+
+        for (int i=0;i< inputArray.length;i++){
+            newarray[i] = ((inputArray [i] - MeanofArray)/SDofArray);
+        }
+        return newarray;
+    }
+
+
+    // Method to perform min max scale----------------------------------------------------------------------------------
+    public static double[] minmaxscale (String[][] array,String Header,int Min,int Max) {
+        String[] range = SelectRange(array,Header,Min,Max);
+        double [] inputArray=SarrayTodouble(range);
+        double[] newArray =new double[inputArray.length];
+        double minOfArray=min(inputArray);
+        double rangeOfArray=max(inputArray)-min(inputArray);
+        for (int i=0;i< inputArray.length;i++){
+            newArray[i] = (inputArray[i] - min(inputArray))/ rangeOfArray;
+        }
+
+        return newArray;
     }
 
 
