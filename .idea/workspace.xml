@@ -19,16 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e0e3463-9a7e-427b-bc0f-b246fa58775f" name="Default Changelist" comment="list of method (in construction)">
-      <change afterPath="$PROJECT_DIR$/src/hello.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSVExample.csv" beforeDir="false" afterPath="$PROJECT_DIR$/CSVExample.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CVS-Library/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CVS-Library/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CVS-Library/Table.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CVS-Library/Table.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CVS-Library/muneq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Table.java" afterDir="false" />
-    </list>
+    <list default="true" id="6e0e3463-9a7e-427b-bc0f-b246fa58775f" name="Default Changelist" comment="list of method (in construction)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
