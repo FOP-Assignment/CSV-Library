@@ -148,6 +148,10 @@ public class Table {
         }
     }
 
+    public void KNNClassifier(int X1,int Y1,int X2,int Y2,double[] SampleCoordinate,String FirstClassName,String SecondClassName,int k){
+        KnnClassifier(X1,Y1,X2,Y2,SampleCoordinate,FirstClassName,SecondClassName,getData(),k);
+    }
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -1053,6 +1057,118 @@ public class Table {
         }
 
         return newArray;
+    }
+//KnnClassifier-------------------------------------------------------------------------------------------------
+public static void KnnClassifier(int X1,int Y1,int X2,int Y2,double[] Sample,String firstClassname,String secondClassname, String[][] arraytest,int k) {
+
+    double[][] firstarray=KnnClassifiergetfirstarray(X1,Y1,arraytest);
+    double[][] secondarray=KnnClassifiergetfirstarray(X2,Y2,arraytest);
+    double[] distancefirstdata = distantcalc(firstarray,Sample);
+    double[] distanceseconddata = distantcalc(secondarray,Sample);
+    classifier(distancefirstdata,distanceseconddata,k,firstClassname,secondClassname);
+
+}
+
+    public static double[][] KnnClassifiergetfirstarray(int X,int Y,String[][] arraytest) {
+
+        double[][] FirstClass=toDouble(arraytest);
+        double[][] SampleArray= new double[FirstClass.length+1][2];
+        int k=0;
+
+        for(int i=0;i< FirstClass.length;i++){
+            for(int j=0;j<FirstClass[0].length;j++){
+
+                if(j==X){
+                    SampleArray[k][0]=FirstClass[i][j];
+
+                }
+                else if(j==Y){
+                    SampleArray[k][1]=FirstClass[i][j];
+                    k++;
+
+                }
+
+            }
+        }
+        return SampleArray;
+    }
+
+    public static double[][] toDouble(String[][] array) {
+        double[][] newAray=new double[array.length][array[0].length];
+        for(int i =0;i< array.length;i++){
+            for (int j=0;j< array[0].length;j++){
+                newAray[i][j]=Double.parseDouble(array[i][j]);
+            }
+        }
+
+        return newAray;
+
+    }
+
+    public static double[] distantcalc(double[][] coordinate,double[] coordinateinput)
+    {
+        double[] newdistance = new double[coordinate.length];
+        for(int i=0; i<coordinate.length; i++ )
+        {
+            double x1 = coordinate[i][0];
+            double y1 = coordinate[i][1];
+            double x2 = coordinateinput[0];
+            double y2 = coordinateinput[1];
+            newdistance[i] = Math.sqrt(Math.pow((x2-x1),2)+Math.pow((y2-y1),2));
+        }
+        sortdistance(newdistance);
+        return newdistance;
+    }
+
+    public static void sortdistance(double[] unsort)
+    {
+        for(int i=1; i<unsort.length;i++)
+        {
+            for (int j=0; j<unsort.length-i;j++ )
+            {
+                if(unsort[j]>unsort[j+1])
+                {
+                    double temp = unsort[j];
+                    unsort[j] = unsort[j+1];
+                    unsort[j+1] = temp;
+                }
+            }
+        }
+    }
+
+    public static void classifier( double[] distancefirstdata,double[] distanceseconddata,int k,String firstclass,String secondclass)
+    {
+
+        int m=0 ,n=0;
+        for (int i=0; i<k;)
+        {
+            if( distancefirstdata[m] < distanceseconddata[n] )
+            {
+                m++;
+                i++;
+            }
+            else if(distancefirstdata[m] > distanceseconddata[n])
+            {
+                n++;
+                i++;
+            }
+            else
+            {
+                m++;
+                n++;
+                i+=2;
+                if(i>k)
+                {k+=2;}
+            }
+        }
+        if(m>n)//either printing or return value
+        {
+            System.out.println("x = " + firstclass);
+        }
+        else
+        {
+            System.out.println("x = " + secondclass);
+        }
     }
 
 
