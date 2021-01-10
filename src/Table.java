@@ -1,5 +1,4 @@
 import java.io.*;
-import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -124,6 +123,12 @@ public class Table {
     public  void ComputeData(String Operation,String Header,int Min,int Max){
         System.out.println(ComputeStatistic(getData(),Operation,Header,Min,Max));
     }
+    public void FillBlankView (String Header,String Input){
+        tableWithLines(fillInBlank(getData(),Header,Input));
+    }
+    public void FillBlankSet (String Header,String Input){
+        setData(fillInBlank(getData(),Header,Input));
+    }
     public void SorterView (String Header){
         tableWithLines(Sort(getData(),Header));
     }
@@ -132,25 +137,27 @@ public class Table {
         tableWithLines(getData());
 
     }
-
-
     public void StandardScaling(String Header,int Min,int Max){
        double[] Scaled=stdscale(getData(),Header,Min,Max);
        for(int i=0;i< Scaled.length;i++){
            System.out.println(Scaled[i]);
        }
     }
-
     public void MinMAxScalling(String Header,int Min,int Max){
         double[] Scaled=minmaxscale(getData(),Header,Min,Max);
         for(int i=0;i< Scaled.length;i++){
             System.out.println(Scaled[i]);
         }
     }
-
     public void KNNClassifier(int X1,int Y1,int X2,int Y2,double[] SampleCoordinate,String FirstClassName,String SecondClassName,int k){
         KnnClassifier(X1,Y1,X2,Y2,SampleCoordinate,FirstClassName,SecondClassName,getData(),k);
     }
+
+    public  void KNNRegressor(String Header1,String Header2,double CoordinateAxisX,int k){
+        System.out.println(Arrays.toString(KnnRegressor(getData(),Header1,Header2,CoordinateAxisX,k)));
+
+    }
+
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -991,6 +998,27 @@ public class Table {
             return Double.NaN;
         }
     }
+    //3.b)FillIn TheBlank---------------------------------------------------------------------------------------------------------------
+    public static String[][] fillInBlank (String[][] v,String Header, String c) {
+
+        int SelectedColumnIndex=0;
+        for(int i=0; i<v[0].length;i++) {
+            if (Header.equalsIgnoreCase(v[0][i])) {
+                SelectedColumnIndex = i;
+                break;
+            }
+        }
+        for (int i = 0; i < v.length; i++) {
+            for (int j = 0;j< v[0].length;j++) {
+
+                if (v[i][j].isEmpty() && j == SelectedColumnIndex) {
+                    v[i][j] = c;
+                }
+            }
+        }
+       return v;
+    }
+
     //----------------------------------------------------------------------------------------------------------------
     public static String[][] Sort(String[][] unsort,String objtosort)
     {
@@ -1170,7 +1198,84 @@ public static void KnnClassifier(int X1,int Y1,int X2,int Y2,double[] Sample,Str
             System.out.println("x = " + secondclass);
         }
     }
+//KNN Regressor---------------------------------------------------------------------------------------------------------------
 
+    public static double[] KnnRegressor(String[][] data, String header1, String header2,double unknown,int k)
+    {
+        double[][] coordinate = KnnRegressorgraph(data,header1,header2);
+        double[] differencebaseddata = lineardistance(coordinate,unknown);
+        sortdata(coordinate,differencebaseddata);
+        double sum = 0,answer;
+        for(int i=0;i<k;i++)
+        {
+            sum += coordinate[i][1];
+        }
+        answer = sum/k;
+        double[] finalans = {unknown,answer};
+        return finalans;
+    }
+
+    public static double[][] KnnRegressorgraph(String[][] data, String x, String y)
+    {
+        String[][] newtable = new String[data.length-1][2];
+        for(int i=0; i<data[0].length;i++)
+        {
+            if(x.equalsIgnoreCase(data[0][i]))
+            {
+                for(int j=0; j<data.length-1; j++)
+                {
+                    newtable[j][0] = data[j+1][i];
+                }
+            }
+            else if(y.equalsIgnoreCase(data[0][i]))
+            {
+                for(int j=0; j<data.length-1; j++)
+                {
+                    newtable[j][1] = data[j+1][i];
+                }
+            }
+        }
+        double[][] output = toDouble(newtable);
+        return output;
+    }
+
+    public static double[] lineardistance(double[][] data, double unknown)
+    {
+        double[] newdistance = new double[data.length];
+        for(int i=0; i<data.length; i++ )
+        {
+            double x1 = data[i][0];
+            newdistance[i] = unknown - x1;
+            if(newdistance[i]<0)
+            {
+                newdistance[i] = 0 - newdistance[i];
+            }
+        }
+        return newdistance;
+    }
+
+    public static void sortdata(double[][] table,double[] unsort)
+    {
+        for(int i=1; i<unsort.length;i++)
+        {
+            for (int j=0; j<unsort.length-i;j++ )
+            {
+                if(unsort[j]>unsort[j+1])
+                {
+                    double temp1 = unsort[j];
+                    unsort[j] = unsort[j+1];
+                    unsort[j+1] = temp1;
+
+                    for(int k=0; k<table[0].length;k++)
+                    {
+                        double temp2 = table[j][k];
+                        table[j][k] = table[j+1][k];
+                        table[j+1][k] = temp2;
+                    }
+                }
+            }
+        }
+    }
 
 
 

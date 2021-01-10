@@ -19,10 +19,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e0e3463-9a7e-427b-bc0f-b246fa58775f" name="Default Changelist" comment="Update&#10;Scaling">
+    <list default="true" id="6e0e3463-9a7e-427b-bc0f-b246fa58775f" name="Default Changelist" comment="Update&#10;Knn Classifier">
+      <change afterPath="$PROJECT_DIR$/Type.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSVExample.csv" beforeDir="false" afterPath="$PROJECT_DIR$/CSVExample.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CVS-Library/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CVS-Library/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CVS-Library/Table.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CVS-Library/Table.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CVS-Library/hello.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CVS-Library/hello.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Table.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hello.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/hello.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,10 +56,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ALIFF\Desktop\UM\6WIX1002(FUNDPROG)\CVS-Library" />
       <recent name="C:\Users\ALIFF\Desktop\UM\6WIX1002(FUNDPROG)\CVS-Library\src" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ALIFF\Desktop\UM\6WIX1002(FUNDPROG)\CVS-Library\src" />
     </key>
   </component>
@@ -65,15 +72,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test" />
+    <configuration name="Test2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test2" />
       <module name="CVS-Library" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test2" />
+    <configuration name="hello" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="hello" />
       <module name="CVS-Library" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -96,10 +103,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.hello" />
         <item itemvalue="Application.tets" />
         <item itemvalue="Application.muneq" />
         <item itemvalue="Application.Test2" />
-        <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
   </component>
@@ -147,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610250916809</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Update&#10;Knn Classifier">
+      <created>1610251640089</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1610251640089</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -166,7 +180,8 @@
     <MESSAGE value="hi" />
     <MESSAGE value="list of method (in construction)" />
     <MESSAGE value="Update&#10;Scaling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update&#10;Scaling" />
+    <MESSAGE value="Update&#10;Knn Classifier" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update&#10;Knn Classifier" />
   </component>
   <component name="WindowStateProjectService">
     <state x="540" y="81" key="#Auto_Import" timestamp="1608784530237">
@@ -181,22 +196,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1609717943506" />
-    <state width="1493" height="2" key="GridCell.Tab.0.bottom" timestamp="1610250920275">
+    <state width="1493" height="104" key="GridCell.Tab.0.bottom" timestamp="1610294812050">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610250920275" />
-    <state width="1493" height="2" key="GridCell.Tab.0.center" timestamp="1610250920275">
+    <state width="1493" height="104" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610294812050" />
+    <state width="1493" height="104" key="GridCell.Tab.0.center" timestamp="1610294812050">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1610250920275" />
-    <state width="1493" height="2" key="GridCell.Tab.0.left" timestamp="1610250920275">
+    <state width="1493" height="104" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1610294812050" />
+    <state width="1493" height="104" key="GridCell.Tab.0.left" timestamp="1610294812049">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1610250920275" />
-    <state width="1493" height="2" key="GridCell.Tab.0.right" timestamp="1610250920275">
+    <state width="1493" height="104" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1610294812049" />
+    <state width="1493" height="104" key="GridCell.Tab.0.right" timestamp="1610294812050">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1610250920275" />
+    <state width="1493" height="104" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1610294812050" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1608994474490">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
