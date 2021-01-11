@@ -1,16 +1,7 @@
-nama,umur,size,kasut,size,harga,origin
-jam,19,xs,nike,12,100,usa
-kamal,18,s,puma,9,80,northkorea
-karim,27,m,adidas,8,150,malaysia
-
-2,5,7,8,4,7
-4,,,9,7,7
-9,,,4,7,7
-
 kasut,size,harga,origin
-nike,12,100,usa
-puma,9,80,northkorea
 adidas,8,150,malaysia
+puma,9,80,northkorea
+nike,12,100,usa
 
 1,2,3,
 1,2,6,
@@ -21,12 +12,12 @@ adidas,8,150,malaysia
 1,2,6,
 
 saya,kamu,dia,
-1,2,3
-2,5,7
-4,6,9
-4,6,9
-6,6,9
-8,5,7
+1,2,3,
+2,5,7,
+4,6,9,
+4,6,9,
+6,6,9,
+8,5,7,
 
 
 1,2

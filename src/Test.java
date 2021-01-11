@@ -6,25 +6,15 @@ public class Test{
 
 
     public static void main(String[] args) {
-        String[][] names = {{"Sam", "Carl", "joe","Smith"}, {"stra", "Robert", "Smith","Sam", "Carl", "Smith","joe"}, {"james", null, "Smith","Sam", "Carl", "Smith"},{"kate", "Robert", "Smith","Sam", "Carl", "Smith"}};
-        String[] Header ={"Sam","Smith","carl","joe"};
-        String[][] board = RangeCol(names, Header);
-        //System.out.println(names[1][1] == null);
+        String[][] Data = {{"Sam", "Carl", "Smith"}, {"1", "3", "9"}, {"7","2", "7"},{"2", "4", "6"}};
 
+        for (int i = 0; i < Data.length; i++) {
+            for (int j = 0; j < Data[i].length; j++) {
+                System.out.print(Data[i][j]);
+                if(j!= Data.length-2){
+                    System.out.print(",");
 
-       /* for (int row = 0; row < names.length; row++) {
-            for (int col = 0; col < names[row].length; col++) {
-                System.out.printf("%10s", names[row][col]);
-
-            }
-            System.out.println();
-        }*/
-        System.out.println();
-        System.out.println();
-
-        for (int row = 0; row < board.length; row++) {
-            for (int col = 0; col < board[row].length; col++) {
-                System.out.printf("%10s", board[row][col]);
+                }
 
             }
             System.out.println();
