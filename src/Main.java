@@ -13,7 +13,7 @@ public class Main {
 
         double[] sample = {2,3,4,5};
 
-         a.allpredictedpoints(a.getData(),"Saya","Kamu",sample,5);
+         a.KNNRegressor("Saya","kamu",5.0,5,sample);
     }
 
 

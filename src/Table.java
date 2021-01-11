@@ -154,8 +154,10 @@ public class Table {
         KnnClassifier(X1,Y1,X2,Y2,SampleCoordinate,FirstClassName,SecondClassName,getData(),k);
     }
 
-    public  void KNNRegressor(String Header1,String Header2,double CoordinateAxisX,int k){
-        KnnRegressor(getData(),Header1,Header2,CoordinateAxisX,k);
+    public  void KNNRegressor(String Header1,String Header2,double CoordinateAxisX,int k,double[] Sample){
+        System.out.println(Arrays.toString(KnnRegressor(getData(),Header1,Header2,CoordinateAxisX,k)));
+        System.out.println("Mean Absolute Error : "+ME(KnnRegressorgraph(getData(),Header1,Header2),Sample,allpredictedpoints(getData(),Header1,Header2,Sample,k))[0]);
+        System.out.println("Mean Squared Error : "+ME(KnnRegressorgraph(getData(),Header1,Header2),Sample,allpredictedpoints(getData(),Header1,Header2,Sample,k))[1]);
 
     }
 
@@ -1261,10 +1263,9 @@ public static void KnnClassifier(int X1,int Y1,int X2,int Y2,double[] Sample,Str
         }
         answer = sum/k;
         double[] finalans = {unknown,answer};
-        System.out.println(Arrays.toString(finalans));
+        //System.out.println(Arrays.toString(finalans));
         
-        System.out.println("Mean Absolute Error : "+MAE(coordinate,unknown,answer));
-        System.out.println("Mean Squared Error : "+Math.pow(MAE(coordinate,unknown,answer),2));
+
         return finalans;
     }
 
@@ -1307,7 +1308,7 @@ public static void KnnClassifier(int X1,int Y1,int X2,int Y2,double[] Sample,Str
         return newdistance;
     }
 
-    public static void sortdata(double[][] table,double[] unsort)
+    public static void sortdata(double[][] table,double[] unsort)//sort method for the classifier and regressor
     {
         for(int i=1; i<unsort.length;i++)
         {
@@ -1330,24 +1331,37 @@ public static void KnnClassifier(int X1,int Y1,int X2,int Y2,double[] Sample,Str
         }
     }
     //AllPredictedPoints for regressor----------------------------------------------------------------------------------------------
-    public void allpredictedpoints(String[][] data, String header1, String header2,double[] sample,int k)
+    public static double[][] allpredictedpoints(String[][] data, String header1, String header2,double[] sample,int k)
     {
+        double[][] allpredictedCoordinate= new double[data.length][2];
         for(int i=0; i<sample.length;i++)
         {
-            KnnRegressor(data,header1,header2,sample[i],k);
-            System.out.println("");
+            allpredictedCoordinate[i]=KnnRegressor(data,header1,header2,sample[i],k);
         }
+        return allpredictedCoordinate;
     }
-    //MeanAbsoluteError-------------------------------------------------------------------------------------------------------------
-    public static double MAE(double[][] Data,double Sample,double answer) {
+    //MeanError-------------------------------------------------------------------------------------------------------------
+    public static double[] ME(double[][] Data,double[] AccSample,double[][] PredictedSample) {
         double[] Graph=LinearGraph(Data);
-        double accY=Graph[0]*Sample+Graph[1];
-
-        double MAEVal =accY-answer;
-        if(MAEVal<0){
-            MAEVal=-MAEVal;
+        double[] accY=new double[AccSample.length] ;
+        double[] Diff = new double [AccSample.length];
+        for(int i=0; i<AccSample.length;i++) {
+            accY[i] = Graph[0]*AccSample[i]+Graph[1];
+            Diff[i] = Math.abs(accY[i] - PredictedSample[i][1]);
         }
-        return MAEVal;
+        double SumVal=0;
+        double SumSquaredVal=0;
+
+        for(int i=0; i<AccSample.length;i++) {
+            SumVal+=Diff[i];
+            SumSquaredVal+=Math.pow(Diff[i],2);
+        }
+
+        double MAE =SumVal/AccSample.length;
+        double MSE =SumSquaredVal/AccSample.length;
+
+        double[] ME={MAE,MSE};
+        return  ME;
     }
 
     //ErrorMatric RegressorGraph-----------------------------------------------------------------------------------------------------------------------
