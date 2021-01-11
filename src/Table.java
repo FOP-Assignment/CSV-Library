@@ -1,4 +1,5 @@
 import java.io.*;
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -154,7 +155,7 @@ public class Table {
     }
 
     public  void KNNRegressor(String Header1,String Header2,double CoordinateAxisX,int k){
-        System.out.println(Arrays.toString(KnnRegressor(getData(),Header1,Header2,CoordinateAxisX,k)));
+        KnnRegressor(getData(),Header1,Header2,CoordinateAxisX,k);
 
     }
 
@@ -1260,6 +1261,10 @@ public static void KnnClassifier(int X1,int Y1,int X2,int Y2,double[] Sample,Str
         }
         answer = sum/k;
         double[] finalans = {unknown,answer};
+        System.out.println(Arrays.toString(finalans));
+        
+        System.out.println("Mean Absolute Error : "+MAE(coordinate,unknown,answer));
+        System.out.println("Mean Squared Error : "+Math.pow(MAE(coordinate,unknown,answer),2));
         return finalans;
     }
 
@@ -1324,6 +1329,98 @@ public static void KnnClassifier(int X1,int Y1,int X2,int Y2,double[] Sample,Str
             }
         }
     }
+    //MeanAbsoluteError-------------------------------------------------------------------------------------------------------------
+    public static double MAE(double[][] Data,double Sample,double answer) {
+        double[] Graph=LinearGraph(Data);
+        double accY=Graph[0]*Sample+Graph[1];
+
+        double MAEVal =accY-answer;
+        if(MAEVal<0){
+            MAEVal=-MAEVal;
+        }
+        return MAEVal;
+    }
+
+    //ErrorMatric RegressorGraph-----------------------------------------------------------------------------------------------------------------------
+    public static double[] LinearGraph(double[][]data) {
+        double[] XArray=new double[data.length];
+        double[] YArray=new double[data.length];
+       for(int i=0;i<data.length;i++){
+           XArray[i]=data[i][0];
+           YArray[i]=data[i][1];
+       }
+       double MeanX=mean(XArray);
+       double MeanY=mean(YArray);
+
+       double SumX=0;
+       double SumY=0;
+
+
+        for(int i=0;i<XArray.length;i++){
+            SumX+=XArray[i];
+            SumY+=YArray[i];
+        }
+        double sqSumXperN =Math.pow(SumX,2)/XArray.length;
+        double sqSumYperN =Math.pow(SumY,2)/ YArray.length;
+
+        double SumXarrsq=0;
+        double SumYarrsq=0;
+
+        for(int i=0;i<XArray.length;i++){
+            SumXarrsq+=Math.pow(XArray[i],2);
+            SumYarrsq+=Math.pow(YArray[i],2);
+        }
+
+        double Sxx = SumXarrsq-sqSumXperN;
+        double Syy = SumYarrsq-sqSumYperN;
+
+        double SumXY=0;
+
+        for(int i=0;i<XArray.length;i++){
+            SumXY+=XArray[i]*YArray[i];
+        }
+        double meanXY=SumXY-(SumX*SumY)/XArray.length;
+
+        double Gradient=meanXY/Sxx;
+        double Intercept=MeanY-(Gradient*MeanX);
+        double[] Graph={Gradient,Intercept};
+        return Graph;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //UpdateCSV---------------------------------------------------------------------------------------------
 public static void save(String File,int TableNum,String[][] Data) {
     String TempFile="TableTempFile";
