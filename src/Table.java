@@ -1,9 +1,9 @@
 import java.io.*;
-import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.function.DoubleToIntFunction;
 import java.util.stream.Stream;
 
 public class Table {
@@ -199,8 +199,8 @@ public class Table {
                         k++;
                     }
                     l++;
-
                 }
+
 
                 if (current[0].equals("")) {
                     i++;
@@ -357,7 +357,7 @@ public class Table {
             in2.close();
 
             setTableNum(i);
-            System.out.println(getTableNum());
+            System.out.println("New TableNum : " + getTableNum());
             setData(GetArray(getPath(), getTableNum(), getRegex()));
         } catch (FileNotFoundException e) {
             System.out.println("File was not found");
@@ -1106,8 +1106,8 @@ public static void KnnClassifier(int X1,int Y1,int X2,int Y2,double[] Sample,Str
     {
         System.out.println("k is adjusted to" + data[2] + "due to the amount of both class to classify the unknown is the same when k = " + k);
     }
-    System.out.printf("The accuracy by Classification Accuracy is %.2f\n",Classifieraccuracy(data));
-    System.out.printf("The accuracy by Confusion Matrix is %.2f\n",Confusionmatrix(data,firstarray.length,secondarray.length));                         
+    System.out.printf("The accuracy by Classification Accuracy is %.2f%\n",Classifieraccuracy(data));
+    System.out.printf("The accuracy by Confusion Matrix is %.2f%\n",Confusionmatrix(data,firstarray.length,secondarray.length));
     
 }
 

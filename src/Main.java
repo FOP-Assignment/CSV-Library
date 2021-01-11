@@ -1,60 +1,20 @@
-import java.io.*;
-import java.util.Arrays;
-import java.util.Scanner;
+
+
+
+
+
 
 
 
 public class Main {
     public static void main(String[] args) {
-
-        Table a =new Table("CSVExample.csv",4,",");
-        //Table b =new Table("CSVExample.csv",3,",");
-        //Table c =new Table("CSVExample.csv",1,",");
-
-        double[] sample = {2,3,4,5};
-
-         a.KNNRegressor("Saya","kamu",5.0,5,sample);
+        Table a =new Table("CSVExample.csv",1,",");
+        String[][] Array ={
+                {"Nama","Umur","University"},
+                {"Muneq","19","UM"},
+                {"Kamal","22","UPSI"},
+                {"Sam","25","UITM"}
+        };
+        a.AddTable(Array);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
