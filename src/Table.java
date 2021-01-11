@@ -465,7 +465,6 @@ public class Table {
 
             }
         }
-        System.out.println(rowNew);
 
         int currrow = 0;
         String[][] newArray = new String[rowNew][col];
@@ -528,7 +527,6 @@ public class Table {
 
             }
         }
-        System.out.println(rowNew);
 
         int currrow = 0;
         String[][] newArray = new String[rowNew][col];
@@ -1106,8 +1104,8 @@ public static void KnnClassifier(int X1,int Y1,int X2,int Y2,double[] Sample,Str
     {
         System.out.println("k is adjusted to" + data[2] + "due to the amount of both class to classify the unknown is the same when k = " + k);
     }
-    System.out.printf("The accuracy by Classification Accuracy is %.2f%\n",Classifieraccuracy(data));
-    System.out.printf("The accuracy by Confusion Matrix is %.2f%\n",Confusionmatrix(data,firstarray.length,secondarray.length));
+    System.out.printf("The accuracy by Classification Accuracy is %.2f%% \n",Classifieraccuracy(data));
+    System.out.printf("The accuracy by Confusion Matrix is %.2f%% \n",Confusionmatrix(data,firstarray.length,secondarray.length));
     
 }
 

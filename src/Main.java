@@ -1,20 +1,7 @@
-
-
-
-
-
-
-
-
 public class Main {
     public static void main(String[] args) {
-        Table a =new Table("CSVExample.csv",1,",");
-        String[][] Array ={
-                {"Nama","Umur","University"},
-                {"Muneq","19","UM"},
-                {"Kamal","22","UPSI"},
-                {"Sam","25","UITM"}
-        };
-        a.AddTable(Array);
+        Table a =new Table("CSVExample.csv",3,",");
+        double[] SampleCoordinate = {7,6};
+        a.KNNClassifier(0,1,2,3, SampleCoordinate,"A1","B2",5);
     }
 }
