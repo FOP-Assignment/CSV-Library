@@ -1329,6 +1329,15 @@ public static void KnnClassifier(int X1,int Y1,int X2,int Y2,double[] Sample,Str
             }
         }
     }
+    //AllPredictedPoints for regressor----------------------------------------------------------------------------------------------
+    public void allpredictedpoints(String[][] data, String header1, String header2,double[] sample,int k)
+    {
+        for(int i=0; i<sample.length;i++)
+        {
+            KnnRegressor(data,header1,header2,sample[i],k);
+            System.out.println("");
+        }
+    }
     //MeanAbsoluteError-------------------------------------------------------------------------------------------------------------
     public static double MAE(double[][] Data,double Sample,double answer) {
         double[] Graph=LinearGraph(Data);
@@ -1390,37 +1399,6 @@ public static void KnnClassifier(int X1,int Y1,int X2,int Y2,double[] Sample,Str
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //UpdateCSV---------------------------------------------------------------------------------------------
 public static void save(String File,int TableNum,String[][] Data) {
     String TempFile="TableTempFile";
@@ -1471,6 +1449,9 @@ public static void save(String File,int TableNum,String[][] Data) {
     catch (IOException e) {
         System.out.println("Problem with file output");
     }
+}
+
+public void allpredictedpoints(String string, String string2, double d, int i) {
 }
 
 
