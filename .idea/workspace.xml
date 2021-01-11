@@ -19,18 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e0e3463-9a7e-427b-bc0f-b246fa58775f" name="Default Changelist" comment="Update&#10;Knn Classifier">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSVExample.csv" beforeDir="false" afterPath="$PROJECT_DIR$/CSVExample.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Type.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Type.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CVS-Library/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CVS-Library/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CVS-Library/Table.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CVS-Library/Table.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CVS-Library/hello.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CVS-Library/hello.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hello.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/hello.java" afterDir="false" />
-    </list>
+    <list default="true" id="6e0e3463-9a7e-427b-bc0f-b246fa58775f" name="Default Changelist" comment="Update&#10;Update CSV Method" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -162,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610251640089</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Update&#10;Update CSV Method">
+      <created>1610333897853</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1610333897853</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -182,7 +178,8 @@
     <MESSAGE value="list of method (in construction)" />
     <MESSAGE value="Update&#10;Scaling" />
     <MESSAGE value="Update&#10;Knn Classifier" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update&#10;Knn Classifier" />
+    <MESSAGE value="Update&#10;Update CSV Method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update&#10;Update CSV Method" />
   </component>
   <component name="WindowStateProjectService">
     <state x="540" y="81" key="#Auto_Import" timestamp="1608784530237">
@@ -201,22 +198,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1609717943506" />
-    <state width="1493" height="196" key="GridCell.Tab.0.bottom" timestamp="1610333487665">
+    <state width="1493" height="196" key="GridCell.Tab.0.bottom" timestamp="1610333910769">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="196" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610333487665" />
-    <state width="1493" height="196" key="GridCell.Tab.0.center" timestamp="1610333487665">
+    <state width="1493" height="196" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610333910769" />
+    <state width="1493" height="196" key="GridCell.Tab.0.center" timestamp="1610333910769">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="196" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1610333487665" />
-    <state width="1493" height="196" key="GridCell.Tab.0.left" timestamp="1610333487665">
+    <state width="1493" height="196" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1610333910769" />
+    <state width="1493" height="196" key="GridCell.Tab.0.left" timestamp="1610333910769">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="196" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1610333487665" />
-    <state width="1493" height="196" key="GridCell.Tab.0.right" timestamp="1610333487665">
+    <state width="1493" height="196" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1610333910769" />
+    <state width="1493" height="196" key="GridCell.Tab.0.right" timestamp="1610333910769">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="196" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1610333487665" />
+    <state width="1493" height="196" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1610333910769" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1608994474490">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
