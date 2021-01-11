@@ -1097,9 +1097,18 @@ public static void KnnClassifier(int X1,int Y1,int X2,int Y2,double[] Sample,Str
     double[][] secondarray=KnnClassifiergetfirstarray(X2,Y2,arraytest);
     double[] distancefirstdata = distantcalc(firstarray,Sample);
     double[] distanceseconddata = distantcalc(secondarray,Sample);
-    classifier(distancefirstdata,distanceseconddata,k,firstClassname,secondClassname);
-
+    int[] data = classifier(distancefirstdata,distanceseconddata,k);                                                                                    
+    classselect(data,firstClassname,secondClassname);
+    if(k!=data[2])
+    {
+        System.out.println("k is adjusted to" + data[2] + "due to the amount of both class to classify the unknown is the same when k = " + k);
+    }
+    System.out.printf("The accuracy by Classification Accuracy is %.2f\n",Classifieraccuracy(data));
+    System.out.printf("The accuracy by Confusion Matrix is %.2f\n",Confusionmatrix(data,firstarray.length,secondarray.length));                         
+    
 }
+
+
 
     public static double[][] KnnClassifiergetfirstarray(int X,int Y,String[][] arraytest) {
 
@@ -1168,7 +1177,7 @@ public static void KnnClassifier(int X1,int Y1,int X2,int Y2,double[] Sample,Str
         }
     }
 
-    public static void classifier( double[] distancefirstdata,double[] distanceseconddata,int k,String firstclass,String secondclass)
+    public static int[] classifier( double[] distancefirstdata,double[] distanceseconddata,int k)
     {
 
         int m=0 ,n=0;
@@ -1193,15 +1202,50 @@ public static void KnnClassifier(int X1,int Y1,int X2,int Y2,double[] Sample,Str
                 {k+=2;}
             }
         }
-        if(m>n)//either printing or return value
-        {
-            System.out.println("x = " + firstclass);
-        }
-        else
-        {
-            System.out.println("x = " + secondclass);
-        }
+        int[] output = {m,n,k};                                                                                                                             //
+        return output;        
     }
+        public static void classselect( int[] output,String firstclass,String secondclass)                                                                      
+        {
+            if(output[0]>output[1])
+            {
+                System.out.println("x = " + firstclass);
+            }
+            else
+            {
+                System.out.println("x = " + secondclass);
+            }
+        }
+        
+         public static double Classifieraccuracy(int[] data)                                                                                                    //added
+        {
+            double accuracy;
+            if(data[0]>data[1])
+            {
+                accuracy = data[0]*100/data[2];
+            }
+            else
+            {
+                accuracy = data[1]*100/data[2];
+            }
+            return accuracy;
+        }
+        
+        public static double Confusionmatrix(int[] data,int n1,int n2)                                                                                          //added
+        {
+            int n = n1 + n2;
+            double accuracy;
+            if(data[0]>data[1])
+            {
+                accuracy = (data[0] + n2 - data[1]) * 100 / n;
+            }
+            else
+            {
+                accuracy = (data[1] + n1 - data[0]) * 100 / n;
+            }
+            return accuracy;
+        }
+    
 //KNN Regressor---------------------------------------------------------------------------------------------------------------
 
     public static double[] KnnRegressor(String[][] data, String header1, String header2,double unknown,int k)
